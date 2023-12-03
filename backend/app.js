@@ -15,6 +15,7 @@ app.use(express.json())
 // Models
 
 const User = require('./models/User')
+const Product = require('./models/Product')
 
 // Open Route - Public Route
 app.get('/', (req,res) => {
@@ -53,6 +54,42 @@ function checkToken(req,res,next) {
         res.status(400).json({msg: "Token inválido"})
     }
 }
+
+// Register Product
+
+app.post('/register-product', checkToken, async (req,res) => {
+    const { name, price, category } = req.body
+
+    // validations
+
+    if(!name) {
+        return res.status(422).json({msg: 'Nome do produto é obrigatório'})
+    }
+
+    if(!price) {
+        return res.status(422).json({msg: 'Preço do produto é obrigatório'})
+    }
+
+    if(!category) {
+        return res.status(422).json({msg: 'Categoria do produto é obrigatório'})
+    }
+
+    // create product
+
+    const product = new Product({
+        name,
+        price,
+        category
+    })
+
+    try {
+        await product.save()
+        res.status(201).json({msg: 'Produto criado com sucesso'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg: error})
+    }
+})
 
 // Register User
 
