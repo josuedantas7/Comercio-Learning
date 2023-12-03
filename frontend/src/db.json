@@ -1,0 +1,140 @@
+{
+    "data" : [
+        {
+            "id": 1,
+            "produto": "Arroz Branco Tio Jorge 1KG",
+            "image": "../src/assets/Arroz.jpg",
+            "categoria": "Alimentos",
+            "preco": 7.00,
+            "disponivel": false
+        },
+        {
+            "id": 2,
+            "produto": "Arroz Branco Tio Jorge 5KG",
+            "image": "../src/assets/Arroz.jpg",
+            "categoria": "Alimentos",
+            "preco": 25.00,
+            "disponivel": true
+        },
+        {
+            "id": 3,
+            "produto": "Arroz Branco Tio Jorge 10KG",
+            "image": "../src/assets/Arroz.jpg",
+            "categoria": "Alimentos",
+            "preco": 45.00,
+            "disponivel": true
+        },
+        {
+            "id": 4,
+            "produto": "Arroz Branco Tio Jorge 25KG",
+            "image": "../src/assets/Arroz.jpg",
+            "categoria": "Alimentos",
+            "preco": 100.00,
+            "disponivel": true
+        },
+        {
+            "id": 5,
+            "produto": "Arroz Branco Tio Jorge 50KG",
+            "image": "../src/assets/Arroz.jpg",
+            "categoria": "Alimentos",
+            "preco": 200.00,
+            "disponivel": true
+        },
+        {
+            "id": 10,
+            "produto": "Coca Coca 2L",
+            "image": "../src/assets/CocaCoca.png",
+            "categoria": "Bebidas",
+            "preco": 12.00,
+            "disponivel": true
+        },
+        {
+            "id": 11,
+            "produto": "Coca Coca 1.5L",
+            "image": "../src/assets/CocaCoca.png",
+            "categoria": "Bebidas",
+            "preco": 8.50,
+            "disponivel": true
+        },
+        {
+            "id": 12,
+            "produto": "Coca Coca 1L",
+            "categoria": "Bebidas",
+            "image": "../src/assets/CocaCoca.png",
+            "preco": 6.00,
+            "disponivel": true
+        },
+        {
+            "id": 13,
+            "produto": "Coca Coca 600ml",
+            "categoria": "Bebidas",
+            "image": "../src/assets/CocaCoca.png",
+            "preco": 4.00,
+            "disponivel": true
+        },
+        {
+            "id": 14,
+            "produto": "Detergente YPE 500ml",
+            "categoria": "Limpeza",
+            "image": "../src/assets/detergenteype.jpeg",
+            "preco": 2.50,
+            "disponivel": true
+        },
+        {
+            "id": 15,
+            "produto": "Detergente YPE 1L",
+            "categoria": "Limpeza",
+            "image": "../src/assets/detergenteype.jpeg",
+            "preco": 4.00,
+            "disponivel": true
+        },
+        {
+            "id": 16,
+            "produto": "Sabão em pó OMO 1KG",
+            "categoria": "Limpeza",
+            "image": "../src/assets/sabaopo.jpg",
+            "preco": 10.00,
+            "disponivel": true
+        },
+        {
+            "id": 17,
+            "produto": "Calabrase /KG",
+            "categoria": "Frios",
+            "image": "../src/assets/calabresa.jpeg",
+            "preco": 30.00,
+            "disponivel": true
+        },
+        {
+            "id": 18,
+            "produto": "Toscana /KG",
+            "categoria": "Frios",
+            "image": "../src/assets/calabresa.jpeg",
+            "preco": 28.00,
+            "disponivel": true
+        },
+        {
+            "id": 19,
+            "produto": "Peito de frango",
+            "categoria": "Frios",
+            "image": "../src/assets/calabresa.jpeg",
+            "preco": 22.00,
+            "disponivel": true
+        },
+        {
+            "id": 20,
+            "produto": "Escova de dente",
+            "categoria": "Higiene",
+            "image": "https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRCcP8jDuTMyaMoGMaP4xIxInVaE7HEjKaNOFUIZmZTEyuupIDITewM6H4H7C2X6sC7MH4k0BQediZeOhrDkv41S5F8oWBpgwsiT6jutrlx9qkW2gIHbt_tQw&usqp=CAE",
+            "preco": 10.00,
+            "disponivel": true
+        },
+        {
+            "id": 21,
+            "produto": "Pasta de dente",
+            "categoria": "Higiene",
+            "image": "data:image/jpeg;base64,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",
+            "preco": 5.00,
+            "disponivel": true
+        }
+    ]
+}
