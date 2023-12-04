@@ -5,12 +5,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const cors = require('cors')
 
 const app = express()
 
 // Config JSON response
 
+app.use(cors())
 app.use(express.json())
+app.use(express.urlencoded({extended: true}))
 
 // Models
 
@@ -38,6 +41,8 @@ app.get('/user/:id',checkToken, async (req,res) => {
 
 })
 
+
+// Middleware
 function checkToken(req,res,next) {
     const authHeader = req.headers['authorization']
     const token = authHeader && authHeader.split(' ')[1]
@@ -57,7 +62,7 @@ function checkToken(req,res,next) {
 
 // Register Product
 
-app.post('/register-product', checkToken, async (req,res) => {
+app.post('/product', async (req,res) => {
     const { name, price, category } = req.body
 
     // validations
@@ -74,21 +79,45 @@ app.post('/register-product', checkToken, async (req,res) => {
         return res.status(422).json({msg: 'Categoria do produto é obrigatório'})
     }
 
+    const productExists = await Product.findOne({name: name})
+
+    if (productExists) {
+        return res.status(422).json({msg: 'Produto já existe'})
+    }
+
     // create product
-
-    const product = new Product({
-        name,
-        price,
-        category
-    })
-
     try {
-        await product.save()
-        res.status(201).json({msg: 'Produto criado com sucesso'})
+        const product = await Product.create({
+            name,
+            price,
+            category,
+        })
+
+        res.status(201).json({ msg: 'Produto criado com sucesso' },);
     } catch (error) {
         console.log(error)
         res.status(500).json({msg: error})
     }
+})
+
+
+// GET ALL PRODUCTS
+app.get('/product', async (req,res) => {
+    const products = await Product.find()
+    res.status(200).json({products})
+})
+
+// GET ONE PRODUCT
+
+app.get('/product/:id', async (req,res) => {
+    const id = req.params.id
+    const product = await Product.findById(id)
+
+    if (!product) {
+        return res.status(404).json({msg: 'Produto não encontrado'})
+    }
+
+    res.status(200).json({product})
 })
 
 // Register User
@@ -176,7 +205,7 @@ app.post('/auth/login', async (req,res) => {
     try {
         const secret = process.env.SECRET
         const token = jwt.sign({userId: user._id}, secret)
-        res.status(200).json({msg: "Autenticação realizada com sucesso", token})
+        res.status(200).json({msg: "Autenticação realizada com sucesso", token, user: {id: user._id, name: user.name, email: user.email}})
     } catch (error) {
         res.status(500).json({msg: error})
     }
@@ -189,6 +218,6 @@ const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPass}@comercialluna.0u6kbeo.mongodb.net/?retryWrites=true&w=majority`).then(() => {
-    app.listen(3000)
+    app.listen(3001)
     console.log("Conectou ao banco")
 }).catch((err) => console.log(err))
