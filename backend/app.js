@@ -220,8 +220,9 @@ app.post('/auth/login', async (req,res) => {
 
 const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
+const port = process.env.PORT
 
 mongoose.connect(`mongodb+srv://${dbUser}:${dbPass}@comercialluna.0u6kbeo.mongodb.net/?retryWrites=true&w=majority`).then(() => {
-    app.listen(3001)
+    app.listen(port)
     console.log("Conectou ao banco")
 }).catch((err) => console.log(err))
