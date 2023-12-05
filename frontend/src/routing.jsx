@@ -10,6 +10,7 @@ import CadastrarItem from './pages/CadastrarItem.jsx'
 import ErrorPage from './pages/ErrorPage.jsx'
 import Login from './pages/Login.jsx'
 import Product from './pages/Product.jsx';
+import Teste from './pages/Teste.jsx';
 
 const routing = () => {
 
@@ -24,7 +25,8 @@ const routing = () => {
             <Route path="/sobre" element={<Sobre />} />
             <Route path='/cadastrar-item' element={<CadastrarItem />} />
             <Route path='*' element={<ErrorPage />} />
-            <Route path='product/:id' element={<Product />} />
+            <Route path='/product/:id' element={<Product />} />
+            <Route path='/teste' element={<Teste />} />
         </Routes>
       <Footer />
     </Router>
