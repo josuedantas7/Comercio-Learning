@@ -25,7 +25,7 @@ const Login = () => {
         e.preventDefault()
         setEmail(email)
         setPassword(password)
-        axios.post('http://localhost:3001/auth/login', {email,password}).then(response => {
+        axios.post('https://comercialluna.onrender.com/auth/login', {email,password}).then(response => {
             const { _id,name,email } = response.data.user
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('user', JSON.stringify({_id,name,email}))

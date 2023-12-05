@@ -8,7 +8,7 @@ const Product = () => {
     const [dados,setDados] = useState([])
 
     async function getDados(){
-        await axios.get(`http://localhost:3001/product/${id}`)
+        await axios.get(`https://comercialluna.onrender.com/product/${id}`)
         .then(response => setDados(response.data.product))
         .catch(err => console.log(err))
     }
