@@ -5,29 +5,36 @@ import FiltroDisponiveis from "./components/Filtros/FiltroDisponiveis"
 
 import PropTypes from 'prop-types'
 import FiltroCategoria from "./components/Filtros/FiltroCategoria"
+import axios from "axios"
 
-const App = ({data,setData}) => {
+const App = () => {
+
+  const [dados,setDados] = useState([])
+  
+  function getDados(){
+    axios.get('http://localhost:3001/product')
+    .then(response => setDados(response.data.products))
+    .catch(err => console.log(err))
+  }
 
   useEffect(() => {
-    setData(data)
+    getDados()
   },[])
   
   return (
     <div className="flex flex-col mb-32">
       <h1 className="text-3xl font-extrabold my-4 text-gray-700 uppercase text-center">Itens Disponíveis</h1>
-      <div className="flex justify-between">
-        <div className="sm:pl-6 flex flex-col gap-12 pl-1">
-          <FiltroDisponiveis data={data} setData={setData}/>
-          <FiltroCategoria data={data} setData={setData}/>
-        </div>
+      <div className="flex">
         <div className="w-full flex gap-3 justify-center flex-wrap">
-          {data.map((item) => (
+          {dados.map((item) => (
             <CardItem
-            key={item.id}
+            id={item._id}
+            key={item._id}
             disponivel={item.disponivel}
-            produto={item.produto}
+            produto={item.name}
             image={item.image}
-            categoria={item.categoria}
+            price={item.price}
+            category={item.category}
             />
           ))}
         </div>
@@ -38,6 +45,6 @@ const App = ({data,setData}) => {
 export default App
 
 App.propTypes = {
-  data: PropTypes.array.isRequired,
-  setData: PropTypes.func.isRequired
+  dados: PropTypes.array,
+  setDados: PropTypes.func
 }

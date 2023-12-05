@@ -63,7 +63,7 @@ function checkToken(req,res,next) {
 // Register Product
 
 app.post('/product', async (req,res) => {
-    const { name, price, category } = req.body
+    const { name, price, category, image } = req.body
 
     // validations
 
@@ -79,6 +79,10 @@ app.post('/product', async (req,res) => {
         return res.status(422).json({msg: 'Categoria do produto é obrigatório'})
     }
 
+    if(!image) {
+        return res.status(422).json({msg: 'Imagem do produto é obrigatório'})
+    }
+
     const productExists = await Product.findOne({name: name})
 
     if (productExists) {
@@ -91,15 +95,15 @@ app.post('/product', async (req,res) => {
             name,
             price,
             category,
+            image,
         })
 
-        res.status(201).json({ msg: 'Produto criado com sucesso' },);
+        res.status(201).json({ msg: 'Produto criado com sucesso' });
     } catch (error) {
         console.log(error)
         res.status(500).json({msg: error})
     }
 })
-
 
 // GET ALL PRODUCTS
 app.get('/product', async (req,res) => {

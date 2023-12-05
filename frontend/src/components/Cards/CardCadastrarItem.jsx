@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react'
 import InputPrimario from '../Input/InputPrimario'
 import Select from '../Input/Select'
 
-import PropTypes from 'prop-types'
 
-const CardCadastrarItem = ({data,setData}) => {
+const CardCadastrarItem = () => {
 
   const [produto,setProduto] = useState('')
   const [imagem,setImagem] = useState('')
   const [categoria,setCategoria] = useState('')
   const [disponivel,setDisponivel] = useState('')
 
-  function onSubmit(){
-    setData([...data,{id: data.length + 1, produto: produto, image: imagem, categoria: categoria, disponivel: disponivel}])
-    console.log(data)
-  }
+  // function onSubmit(){
+  //   setData([...data,{id: data.length + 1, produto: produto, image: imagem, categoria: categoria, disponivel: disponivel}])
+  //   console.log(data)
+  // }
 
   return (
     <div className='max-w-[500px] flex flex-col gap-3'>
@@ -27,7 +26,7 @@ const CardCadastrarItem = ({data,setData}) => {
         <button onClick={() => setDisponivel(false)} className='bg-red-700 hover:bg-red-300 px-3 py-2 rounded-lg duration-300'>Indisponivel</button>
       </div>
       <div className='mt-4'>
-        <button onClick={() => onSubmit()} className='w-full py-3 rounded-lg bg-blue-400 duration-300 hover:bg-blue-800 text-white font-semibold'>
+        <button className='w-full py-3 rounded-lg bg-blue-400 duration-300 hover:bg-blue-800 text-white font-semibold'>
           Cadastrar Item
         </button></div>
     </div>
@@ -35,8 +34,3 @@ const CardCadastrarItem = ({data,setData}) => {
 }
 
 export default CardCadastrarItem
-
-CardCadastrarItem.propTypes = {
-  data: PropTypes.array.isRequired,
-  setData: PropTypes.func.isRequired
-}
