@@ -81,7 +81,7 @@ const About = () => {
                   prevEl: '.swiper-button-prev',
                 }}
                 pagination={{ clickable: true }}
-                className='w-[650px] h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px]'
+                className='w-[650px] h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px] max-[430px]:w-[350px] max-[380px]:w-[320px]'
               >
                 <div className="swiper-button-next" style={{ color: 'white' }}></div>
                 <div className="swiper-button-prev" style={{ color: 'white' }}></div>
@@ -92,8 +92,8 @@ const About = () => {
             </div>
           </div>
           <div className='w-1/2 flex flex-col justify-center max-[1350px]:items-center max-[1350px]:justify-start pr-32 max-[1000px]:w-full max-[1000px]:items-start pl-20 max-[1000px]:pr-0 max-[1000px]:mb-32 max-[650px]:pl-8 max-[460px]:pl-2'>
-            <h1 className='text-2xl ml-2.5 mb-1 font-semibold'>Localização do estabelecimento:</h1>
-            <iframe className='rounded-2xl max-[1350px]:w-[80%] max-[1350px]:h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px]'
+            <h1 className='text-2xl ml-2.5 mb-1 max-[430px]:ml-0 font-semibold'>Localização do estabelecimento:</h1>
+            <iframe className='rounded-2xl max-[1350px]:w-[80%] max-[1350px]:h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px] max-[430px]:w-[350px] max-[380px]:w-[320px]'
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3972.332571877203!2d-49.11216538845281!3d-5.366139053675242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x92c3a1f1cda64667%3A0x29dbb49dcac0ab1e!2sComercial%20Luna!5e0!3m2!1spt-BR!2sbr!4v1701321040239!5m2!1spt-BR!2sbr" 
             width="100%" 
             height="560" 
