@@ -49,7 +49,7 @@ const Header = () => {
           <Typography
             variant="h6"
             noWrap
-            href='/home'
+            href='/'
             component="a"
             sx={{
               mr: 2,
@@ -120,7 +120,7 @@ const Header = () => {
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
