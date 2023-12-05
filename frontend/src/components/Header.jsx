@@ -93,15 +93,27 @@ const Header = () => {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page,index) => (
-                <MenuItem key={index+1} onClick={handleCloseNavMenu}>
+                <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to={`/${page}`}>
-                      {page === '/' ? 'Home' : page.charAt(0).toUpperCase() + page.slice(1)}
+                    <Link to={`/`}>
+                      Home
                     </Link>  
                   </Typography>
                 </MenuItem>
-              ))}
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to={`/sobre`}>
+                      Sobre
+                    </Link>  
+                  </Typography>
+                </MenuItem>
+                <MenuItem onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">
+                    <Link to={`/login`}>
+                      Login
+                    </Link>  
+                  </Typography>
+                </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -123,17 +135,30 @@ const Header = () => {
             <CiShop className='text-3xl duration-300 hover:scale-110'/>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
               <Button
-                key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to={`/${page}`}>
-                  {page === '/' ? 'home' : page}
+                <Link to={`/`}>
+                  Home
                 </Link>
               </Button>
-            ))}
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Link to={`/sobre`}>
+                  Sobre
+                </Link>
+              </Button>
+              <Button
+                onClick={handleCloseNavMenu}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                <Link to={`/login`}>
+                  Login
+                </Link>
+              </Button>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
