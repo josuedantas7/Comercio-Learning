@@ -12,7 +12,7 @@ const App = () => {
   const [dados,setDados] = useState([])
   
   function getDados(){
-    axios.get('http://localhost:3001/product')
+    axios.get('https://comercialluna.onrender.com/product')
     .then(response => setDados(response.data.products))
     .catch(err => console.log(err))
   }
