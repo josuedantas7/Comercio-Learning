@@ -18,7 +18,7 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['home','sobre'];
+const pages = ['home','sobre','login'];
 const settings = ['Meu perfil', 'Meu carrinho', 'Sair'];
 
 const Header = () => {
@@ -96,7 +96,7 @@ const Header = () => {
               {pages.map((page,index) => (
                 <MenuItem key={index+1} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-                    <Link to={`/${page}`}>
+                    <Link to={`/${page === 'home' ? '/' : page}`}>
                       {page.charAt(0).toUpperCase() + page.slice(1)}
                     </Link>  
                   </Typography>
@@ -129,7 +129,7 @@ const Header = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to={`/${page}`}>
+                <Link to={`/${page === 'home' ? '/' : page}`}>
                   {page}
                 </Link>
               </Button>
