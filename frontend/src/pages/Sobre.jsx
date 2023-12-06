@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 
@@ -82,7 +80,7 @@ const About = () => {
                   prevEl: '.swiper-button-prev',
                 }}
                 pagination={{ clickable: true }}
-                className='h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px] max-[430px]:w-[380px] max-[380px]:w-[335px] max-[410px]:w-[370px] max-[400px]:w-[350px] max-[360px]:w-[320px]'
+                className='min-[1000px]:w-[600px] h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px] max-[430px]:w-[380px] max-[380px]:w-[335px] max-[410px]:w-[370px] max-[400px]:w-[350px] max-[360px]:w-[320px]'
               >
                 <div className="swiper-button-next" style={{ color: 'white' }}></div>
                 <div className="swiper-button-prev" style={{ color: 'white' }}></div>

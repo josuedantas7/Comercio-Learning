@@ -11,9 +11,9 @@ const ButtonVoltar = () => {
     
 
   return (
-    <button onClick={handleGoBack} className="absolute left-8 text-black flex items-center gap-2">
+    <button onClick={handleGoBack} className="absolute left-8 text-black flex items-center gap-2 max-[480px]:left-2">
         <FaArrowLeft className='text-lg'/>
-        <p className='text-[20px]'>Voltar</p>
+        <p className='text-[20px] flex max-[600px]:hidden'>Voltar</p>
     </button>
   )
 }
