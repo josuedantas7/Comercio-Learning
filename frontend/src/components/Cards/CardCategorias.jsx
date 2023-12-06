@@ -11,6 +11,8 @@ import axios from 'axios';
 import imagem1 from '../../assets/ComercialLuna.png';
 import imagem2 from '../../assets/ComercialLuna2.png';
 import imagem3 from '../../assets/ComercialLuna3.png';
+import { Link } from 'react-router-dom';
+import LoadingComponent from '../Loading/Loading';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
@@ -18,6 +20,7 @@ const CardCategorias = ({ categoria }) => {
 
     const [dados, setDados] = useState([]);
     const [images, setImages] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const getDados = async () => {
@@ -33,8 +36,10 @@ const CardCategorias = ({ categoria }) => {
                 }
 
                 setImages([...images, ...newImages]);
+                setIsLoading(false);
             } catch (error) {
                 console.error(error);
+                setIsLoading(false);
             }
         };
 
@@ -42,35 +47,39 @@ const CardCategorias = ({ categoria }) => {
     }, [dados,images,categoria]);
 
     return (
-        <div className='border-2 flex flex-col rounded-lg w-[300px]'>
-            {images.length > 0 && (
-                <>
-                    <div className='max-w-[295px]'>
-                        <Swiper
-                            modules={[EffectFade]}
-                            effect="fade"
-                            autoplay={{ delay: 2000 }}
-                            loop={false}
-                            navigation={{
-                                nextEl: '.swiper-button-next',
-                                prevEl: '.swiper-button-prev',
-                            }}
-                            pagination={{ clickable: true }}
-                            className='w-[300px]'
-                        >
-                            <div className="swiper-button-next" style={{ color: 'white' }}></div>
-                            <div className="swiper-button-prev" style={{ color: 'white' }}></div>
-                            {images.map((i, el) => (
-                                <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
-                            ))}
-                        </Swiper>
-                    </div>
-                    <div className=''>
-                        <h1 className='text-3xl text-center text-gray-700 font-bold mb-4'>{categoria}</h1>
-                    </div>
-                </>
-            )}
-        </div>
+        <>
+            {!isLoading ? (
+                <Link to={`/categoria/${categoria}`} className='border-2 flex flex-col rounded-lg w-[300px]'>
+                {images.length > 0 && (
+                    <>
+                        <div className='max-w-[295px]'>
+                            <Swiper
+                                modules={[EffectFade]}
+                                effect="fade"
+                                autoplay={{ delay: 2000 }}
+                                loop={false}
+                                navigation={{
+                                    nextEl: '.swiper-button-next',
+                                    prevEl: '.swiper-button-prev',
+                                }}
+                                pagination={{ clickable: true }}
+                                className='w-[300px]'
+                            >
+                                <div className="swiper-button-next" style={{ color: 'white' }}></div>
+                                <div className="swiper-button-prev" style={{ color: 'white' }}></div>
+                                {images.map((i, el) => (
+                                    <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
+                                ))}
+                            </Swiper>
+                        </div>
+                        <div className=''>
+                            <h1 className='text-3xl text-center text-gray-700 font-bold mb-4'>{categoria}</h1>
+                        </div>
+                    </>
+                )}
+            </Link>
+            ): <LoadingComponent/>}
+        </>
     );
 };
 

@@ -11,6 +11,7 @@ import ErrorPage from './pages/ErrorPage.jsx'
 import Login from './pages/Login.jsx'
 import Product from './pages/Product.jsx';
 import Teste from './pages/Teste.jsx';
+import Categoria from './pages/Categoria.jsx';
 
 const routing = () => {
 
@@ -27,6 +28,7 @@ const routing = () => {
             <Route path='*' element={<ErrorPage />} />
             <Route path='/product/:id' element={<Product />} />
             <Route path='/teste' element={<Teste />} />
+            <Route path='/categoria/:id' element={<Categoria />} />
         </Routes>
       <Footer />
     </Router>
