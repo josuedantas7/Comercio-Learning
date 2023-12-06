@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -8,17 +8,15 @@ import 'swiper/css/pagination';
 import SwiperCore from 'swiper';
 import axios from 'axios';
 
-import imagem1 from '../../assets/ComercialLuna.png';
-import imagem2 from '../../assets/ComercialLuna2.png';
-import imagem3 from '../../assets/ComercialLuna3.png';
 import { Link } from 'react-router-dom';
 import LoadingComponent from '../Loading/Loading';
+
+import Proptypes from 'prop-types';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 const CardCategorias = ({ categoria }) => {
 
-    const [dados, setDados] = useState([]);
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +42,7 @@ const CardCategorias = ({ categoria }) => {
         };
 
         getDados();
-    }, [dados,images,categoria]);
+    }, [images,categoria]);
 
     return (
         <>
@@ -84,3 +82,8 @@ const CardCategorias = ({ categoria }) => {
 };
 
 export default CardCategorias;
+
+
+CardCategorias.propTypes = {
+    categoria: Proptypes.string.isRequired,
+}

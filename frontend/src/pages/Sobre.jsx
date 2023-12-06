@@ -16,6 +16,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import SwiperCore from 'swiper'
+import PrimaryTitle from '../components/Text/PrimaryTitle';
 
 SwiperCore.use([Autoplay, Navigation, Pagination])
 
@@ -25,7 +26,7 @@ const images = [imagem1,imagem2,imagem3]
 const About = () => {
   return (
     <div className='text-gray-800'>
-        <h1 className='text-3xl text-center mt-4 font-extrabold'>Sobre o Comercial Luna</h1>
+        <PrimaryTitle title='Sobre o Comercial Luna' botaoVoltar={true}/>
         <div className='flex w-full max-[1000px]:flex-col max-[1000px]:items-center'>
           <div className='w-1/2 max-[1000px]:w-full flex pl-32 gap-4 pr-8 flex-col mt-4 max-[1000px]:pl-20 max-[650px]:pl-8 max-[460px]:pl-2'>
             <div className='flex flex-col'>
