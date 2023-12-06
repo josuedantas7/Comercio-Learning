@@ -5,7 +5,7 @@ const PrimaryTitle = ({title, botaoVoltar}) => {
   return (
     <div className='my-8 flex justify-center items-center'>
         {botaoVoltar && <ButtonVoltar />}
-        <h1 className='text-3xl max-[420px]:text-xl text-center text-gray-700 font-extrabold'>{title}</h1>
+        <h1 className='text-3xl max-[420px]:text-lg text-center text-gray-700 font-extrabold'>{title}</h1>
     </div>
   )
 }
