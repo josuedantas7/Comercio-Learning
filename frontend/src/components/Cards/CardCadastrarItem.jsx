@@ -30,10 +30,12 @@ const CardCadastrarItem = () => {
       console.log(response)
       setAlert(true)
       setAlertMessage('Item cadastrado com sucesso!')
+      alert('Item cadastrado com sucesso!')
     })
     .catch(error => {
       setAlert(true)
       setAlertMessage('Erro ao cadastrar item!')
+      alert('Erro ao cadastrar item!')
       console.log(error)
     })}
 
