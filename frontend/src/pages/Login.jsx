@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import InputLogin from '../components/Input/InputLogin'
 import userLogo from '../assets/logouser.png'
 import imagemLogin from '../assets/icon-1728552_1280.jpg'
@@ -9,7 +9,9 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import ToastMessage from '../components/ToastMessage/ToastMessage';
 
-const Login = () => {
+import PropTypes from 'prop-types'
+
+const Login = ({getAdmin}) => {
 
     const navigate = useNavigate()
 
@@ -21,6 +23,8 @@ const Login = () => {
 
     const notify = () => toast(messageToast, {type: typeToast});
 
+
+
     function handleSubmit(e){
         e.preventDefault()
         setEmail(email)
@@ -29,6 +33,7 @@ const Login = () => {
             const { _id,name,email } = response.data.user
             localStorage.setItem('token', response.data.token)
             localStorage.setItem('user', JSON.stringify({_id,name,email}))
+            getAdmin()
             console.log(response.data)
             setMessageToast(response.data.msg)
             setTypeToast('success')
@@ -64,3 +69,8 @@ const Login = () => {
 }
 
 export default Login
+
+Login.propTypes = {
+    getAdmin: PropTypes.func.isRequired,
+    setIsAdmin: PropTypes.func.isRequired
+}
