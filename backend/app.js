@@ -63,7 +63,7 @@ function checkToken(req,res,next) {
 // Register Product
 
 app.post('/product', async (req,res) => {
-    const { name, price, category, image } = req.body
+    const { name, price, category, image, disponivel } = req.body
 
     // validations
 
