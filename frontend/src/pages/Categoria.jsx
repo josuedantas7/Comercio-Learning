@@ -33,7 +33,7 @@ const Categoria = () => {
 
 
   return (
-    <div>
+    <div className='mb-32'>
       <>
         <PrimaryTitle botaoVoltar={true} title={`Lista de produtos da categoria ${id}`}/>
         {!isLoading ? (
