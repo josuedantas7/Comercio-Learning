@@ -10,6 +10,7 @@ const App = () => {
             <CardCategorias categoria={'Alimentos'}/>
             <CardCategorias categoria={'Frios'}/>
             <CardCategorias categoria={'Bebidas'}/>
+            <CardCategorias categoria={'Cervejas'}/>
         </div>
     </div>
   )

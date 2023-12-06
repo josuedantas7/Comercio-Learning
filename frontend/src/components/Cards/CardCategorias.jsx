@@ -63,15 +63,16 @@ const CardCategorias = ({ categoria }) => {
                                 pagination={{ clickable: true }}
                                 className='w-[300px]'
                             >
-                                <div className="swiper-button-next" style={{ color: 'white' }}></div>
-                                <div className="swiper-button-prev" style={{ color: 'white' }}></div>
+                                <div className="swiper-button-next" style={{ color: 'gray' }}></div>
+                                <div className="swiper-button-prev" style={{ color: 'gray' }}></div>
                                 {images.map((i, el) => (
                                     <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
                                 ))}
                             </Swiper>
                         </div>
                         <div className=''>
-                            <h1 className='text-3xl text-center text-gray-700 font-bold mb-4'>{categoria}</h1>
+                            <h1 className='text-3xl text-center text-gray-700 font-bold'>{categoria}</h1>
+                            <p className='text-center text-gray-700 mb-2'>Quantidade de itens achados: {images.length}</p>
                         </div>
                     </>
                 )}
