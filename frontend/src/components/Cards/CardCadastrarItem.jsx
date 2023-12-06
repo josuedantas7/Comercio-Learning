@@ -13,6 +13,10 @@ const CardCadastrarItem = () => {
   const [disponivel,setDisponivel] = useState(true)
   const [preco,setPreco] = useState('')
 
+  const [alert,setAlert] = useState(false)
+  const [alertMessage,setAlertMessage] = useState('')
+
+
   function createItem(){
     let precoNumber = Number(preco)
 
@@ -24,8 +28,12 @@ const CardCadastrarItem = () => {
     price: precoNumber})
     .then(response => {
       console.log(response)
+      setAlert(true)
+      setAlertMessage('Item cadastrado com sucesso!')
     })
     .catch(error => {
+      setAlert(true)
+      setAlertMessage('Erro ao cadastrar item!')
       console.log(error)
     })}
 
@@ -43,7 +51,9 @@ const CardCadastrarItem = () => {
       <div className='mt-4'>
         <button onClick={createItem} className='w-full py-3 rounded-lg bg-blue-400 duration-300 hover:bg-blue-800 text-white font-semibold'>
           Cadastrar Item
-        </button></div>
+        </button>
+      </div>
+      {alert && <div className='mt-4 bg-green-400 text-white font-semibold text-center rounded-lg py-2'>{alertMessage}</div>}
     </div>
   )
 }

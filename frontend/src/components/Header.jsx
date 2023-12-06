@@ -86,9 +86,6 @@ const Header = ({isAdmin, setIsAdmin}) => {
             }}>
               <Typography textAlign="center"><Link to={'/cadastrar-item'}>Cadastrar Item</Link></Typography>
             </MenuItem>
-            <MenuItem href='/editar-item' onClick={handleCloseUserMenu}>
-              <Typography textAlign="center"><Link to={'/editar-item'}>Editar Item</Link></Typography>
-            </MenuItem>
             <MenuItem onClick={handleLogout}>
               <Typography textAlign="center">Sair</Typography>
             </MenuItem>

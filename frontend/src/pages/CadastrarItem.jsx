@@ -1,10 +1,11 @@
 import CardCadastrarItem from '../components/Cards/CardCadastrarItem'
+import PrimaryTitle from '../components/Text/PrimaryTitle'
 
 const CadastrarItem = () => {
     
   return (
     <div>
-      <h1 className='text-center text-3xl my-8 font-extrabold'>Cadastrar Item</h1>
+      <PrimaryTitle botaoVoltar={true} title='Cadastrar Item:'/>
       <div className='flex justify-center'>
         <CardCadastrarItem />
       </div>
