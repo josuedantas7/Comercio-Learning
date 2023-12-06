@@ -16,8 +16,8 @@ import Editaritem from './pages/Editaritem.jsx';
 
 import { useState, useEffect } from 'react'
 
-const routing = () => {
-  
+const Routing = () => {
+
   const [isAdmin, setIsAdmin] = useState(false);
 
   const getAdmin = () => {
@@ -56,4 +56,4 @@ const routing = () => {
   )
 }
 
-export default routing
+export default Routing

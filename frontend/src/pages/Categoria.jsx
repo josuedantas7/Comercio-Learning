@@ -3,6 +3,7 @@ import CardItem from '../components/Cards/CardItem'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import LoadingComponent from '../components/Loading/Loading'
+import PrimaryTitle from '../components/Text/PrimaryTitle'
 
 const Categoria = () => {
 
@@ -34,12 +35,11 @@ const Categoria = () => {
   return (
     <div>
       <>
-        <h1 className='text-center font-extrabold text-3xl my-8'>Lista de produtos da categoria {id}</h1>
+        <PrimaryTitle botaoVoltar={true} title={`Lista de produtos da categoria ${id}`}/>
         {!isLoading ? (
             <div className='flex justify-center gap-5 flex-wrap'>
             {dados.map((item) => (
                 <CardItem
-                id={item._id}
                 key={item._id}
                 disponivel={item.disponivel}
                 produto={item.name}

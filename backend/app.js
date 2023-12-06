@@ -96,6 +96,7 @@ app.post('/product', async (req,res) => {
             price,
             category,
             image,
+            disponivel,
         })
 
         res.status(201).json({ msg: 'Produto criado com sucesso' });
