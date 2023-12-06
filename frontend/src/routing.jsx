@@ -45,7 +45,7 @@ const Routing = () => {
             <Route path="/home" element={<Home/>} />
             <Route path="/sobre" element={<Sobre />} />
             <Route path='/cadastrar-item' element={<CadastrarItem />} />
-            <Route path='/product/:id' element={<Product />} />
+            <Route path='/product/:id' element={<Product isAdmin={isAdmin} />} />
             <Route path='/teste' element={<Teste />} />
             <Route path='/categoria/:id' element={<Categoria />} />
             <Route path='/editar-item' element={<Editaritem />} />

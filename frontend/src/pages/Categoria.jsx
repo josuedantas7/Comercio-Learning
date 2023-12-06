@@ -41,6 +41,7 @@ const Categoria = () => {
             {dados.map((item) => (
                 <CardItem
                 key={item._id}
+                id={item._id}
                 disponivel={item.disponivel}
                 produto={item.name}
                 image={item.image}

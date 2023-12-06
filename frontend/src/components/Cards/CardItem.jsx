@@ -8,10 +8,10 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 
-export default function MultiActionAreaCard({image,produto,disponivel,category,price}) {
+export default function MultiActionAreaCard({id,image,produto,disponivel,category,price}) {
 
   return (
-    // <Link to={`/product/${id}`}>
+    <Link to={`/product/${id}`}>
       <Card style={{width: '300px'}} sx={{ maxWidth: 300 }}>
         <CardActionArea>
           <div>
@@ -40,7 +40,7 @@ export default function MultiActionAreaCard({image,produto,disponivel,category,p
           </Button>
         </CardActions>
       </Card>
-    // </Link>
+    </Link>
   );
 }
 
@@ -50,5 +50,5 @@ MultiActionAreaCard.propTypes = {
   produto: PropTypes.string,
   disponivel: PropTypes.bool,
   category: PropTypes.string,
-  // id: PropTypes.string
+  id: PropTypes.string
 };

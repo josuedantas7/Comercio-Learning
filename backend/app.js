@@ -125,6 +125,56 @@ app.get('/product/:id', async (req,res) => {
     res.status(200).json({product})
 })
 
+// UPDATE PRODUCT
+app.post('/product/:id', async (req,res) => {
+    const id = req.params.id
+    const { name, price, category, image, disponivel } = req.body
+
+    // validations
+
+    if(!name) {
+        return res.status(422).json({msg: 'Nome do produto é obrigatório'})
+    }
+
+    if(!price) {
+        return res.status(422).json({msg: 'Preço do produto é obrigatório'})
+    }
+
+    if(!category) {
+        return res.status(422).json({msg: 'Categoria do produto é obrigatório'})
+    }
+
+    if(!image) {
+        return res.status(422).json({msg: 'Imagem do produto é obrigatório'})
+    }
+
+    if (!disponivel) {
+        return res.status(422).json({msg: 'Disponibilidade do produto é obrigatório'})
+    }
+
+    const productExists = await Product.findOne({_id: id})
+
+    if (!productExists) {
+        return res.status(422).json({msg: 'Produto não existe'})
+    }
+
+    // update product
+    try {
+        const product = await Product.findByIdAndUpdate(id, {
+            name,
+            price,
+            category,
+            image,
+            disponivel,
+        })
+
+        res.status(201).json({ msg: 'Produto atualizado com sucesso' });
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({msg: error})
+    }
+})
+
 // Register User
 
 app.post('/auth/register', async (req,res) => {
