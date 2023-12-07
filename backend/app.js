@@ -26,7 +26,7 @@ app.get('/', (req,res) => {
 })
 
 // Private Route
-app.get('/user/:id',checkToken, async (req,res) => {
+app.get('/user/:id', async (req,res) => {
 
     const id = req.params.id
 
