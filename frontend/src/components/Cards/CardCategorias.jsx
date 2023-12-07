@@ -60,7 +60,6 @@ const CardCategorias = ({ categoria }) => {
                                     nextEl: '.swiper-button-next',
                                     prevEl: '.swiper-button-prev',
                                 }}
-                                pagination={{ clickable: true }}
                                 className='w-[300px]'
                             >
                                 <div className="swiper-button-next" style={{ color: 'gray' }}></div>
