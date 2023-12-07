@@ -10,12 +10,17 @@ export const AuthProvider = ({ children }) => {
     const [user,setUser] = useState(null)
 
     useEffect(() => {
-        const loadingStoreData = () => {
-            const storeUser = localStorage.getItem('user')
+        const loadingStoreData = async () => {
             const storeToken = localStorage.getItem('token')
+            const storeUser = localStorage.getItem('user')
     
-            if (storeUser && storeToken) {
-                setUser(JSON.parse(storeUser))
+            if (storeToken) {
+                const data = await axios.post('https://comercialluna.onrender.com/validate-token', { token: storeToken })
+                if (data) {
+                    setUser(JSON.parse(storeUser))
+                } else {
+                    Navigate('/login')
+                }
             }
         }
     
@@ -29,7 +34,7 @@ export const AuthProvider = ({ children }) => {
             if (response.data.error) {
                 alert(response.data.error)
             } else {
-                setUser(response.data)
+                setUser(response.data.user)
 
                 axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
 

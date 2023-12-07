@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
+import { AuthContext } from '../context/AuthContext'
 
-const Product = ({isAdmin}) => {
+const Product = () => {
+
+    const { signed } = useContext(AuthContext)
+
     const {id} = useParams()
 
     const [dados,setDados] = useState([])
@@ -86,7 +90,7 @@ const Product = ({isAdmin}) => {
                 {isEditing ? <img src={dados.image} className='w-[300px] h-[300px] rounded-md'/> : <img src={dados.image} className='w-[300px] h-[300px] rounded-md'/>}
             </div>
         </div>
-        {isAdmin && (
+        {signed && (
             <div className='flex gap-3'>
                 {!isEditing && (
                     <button onClick={() => setIsEditing(true)} className='text-center mx-auto py-3 mt-8 rounded-lg w-[200px] bg-green-500 text-white font-bold hover:bg-green-900'>Editar item</button>

@@ -43,22 +43,25 @@ app.get('/user/:id',checkToken, async (req,res) => {
 
 
 // Middleware
-function checkToken(req,res,next) {
-    const authHeader = req.headers['authorization']
-    const token = authHeader && authHeader.split(' ')[1]
+app.post('/validate-token', async (req, res) => {
+    const authHeader = req.headers['authorization'];
+    const token = authHeader && authHeader.split(' ')[1];
 
     if (!token) {
-        return res.status(401).json({msg: 'Acesso negado'})
+        return res.status(401).json({ msg: 'Acesso negado' });
     }
 
     try {
-        const secret = process.env.SECRET
-        jwt.verify(token, secret)
-        next()
-    } catch(error) {
-        res.status(400).json({msg: "Token inválido"})
+        const secret = process.env.SECRET;
+        jwt.verify(token, secret);
+        res.status(200).json({ msg: 'Token válido' });
+    } catch (error) {
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({ msg: 'Token expirado' });
+        }
+        return res.status(400).json({ msg: 'Token inválido' });
     }
-}
+});
 
 // Register Product
 
@@ -132,24 +135,9 @@ app.post('/product/:id', async (req,res) => {
 
     // validations
 
-    if(!name) {
-        return res.status(422).json({msg: 'Nome do produto é obrigatório'})
-    }
 
-    if(!price) {
-        return res.status(422).json({msg: 'Preço do produto é obrigatório'})
-    }
-
-    if(!category) {
-        return res.status(422).json({msg: 'Categoria do produto é obrigatório'})
-    }
-
-    if(!image) {
-        return res.status(422).json({msg: 'Imagem do produto é obrigatório'})
-    }
-
-    if (!disponivel) {
-        return res.status(422).json({msg: 'Disponibilidade do produto é obrigatório'})
+    if (!name && !price && !category && !image) {
+        return res.status(422).json({ msg: 'Nenhum dado de atualização fornecido' });
     }
 
     const productExists = await Product.findOne({_id: id})
@@ -158,20 +146,22 @@ app.post('/product/:id', async (req,res) => {
         return res.status(422).json({msg: 'Produto não existe'})
     }
 
+    const updateObject = {};
+    if (name) updateObject.name = name;
+    if (price) updateObject.price = price;
+    if (category) updateObject.category = category;
+    if (image) updateObject.image = image;
+    if (disponivel !== undefined) updateObject.disponivel = disponivel;
+
+
     // update product
     try {
-        const product = await Product.findByIdAndUpdate(id, {
-            name,
-            price,
-            category,
-            image,
-            disponivel,
-        })
+        const product = await Product.findByIdAndUpdate(id, updateObject, { new: true });
 
-        res.status(201).json({ msg: 'Produto atualizado com sucesso' });
+        res.status(201).json({ msg: 'Produto atualizado com sucesso', product });
     } catch (error) {
-        console.log(error)
-        res.status(500).json({msg: error})
+        console.log(error);
+        res.status(500).json({ msg: error });
     }
 })
 
