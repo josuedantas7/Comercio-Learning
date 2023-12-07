@@ -5,7 +5,7 @@ import imagemLogin from '../assets/icon-1728552_1280.jpg'
 import { toast } from 'react-toastify';
 import ToastMessage from '../components/ToastMessage/ToastMessage';
 
-import { AuthContext } from '../assets/context/AuthContext';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
 

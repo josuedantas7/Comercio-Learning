@@ -14,7 +14,7 @@ import Teste from './pages/Teste.jsx';
 import Categoria from './pages/Categoria.jsx';
 import Editaritem from './pages/Editaritem.jsx';
 
-import { AuthProvider } from './assets/context/AuthContext.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 const Routing = () => {
 

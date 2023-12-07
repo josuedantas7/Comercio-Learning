@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AuthContext } from '../assets/context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import CardCadastrarItem from '../components/Cards/CardCadastrarItem'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
 
