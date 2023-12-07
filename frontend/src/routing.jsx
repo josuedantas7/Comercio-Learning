@@ -14,44 +14,29 @@ import Teste from './pages/Teste.jsx';
 import Categoria from './pages/Categoria.jsx';
 import Editaritem from './pages/Editaritem.jsx';
 
-import { useState, useEffect } from 'react'
+import { AuthProvider } from './assets/context/AuthContext.jsx';
 
 const Routing = () => {
-
-  const [isAdmin, setIsAdmin] = useState(false);
-
-  const getAdmin = () => {
-    const storedUser = localStorage.getItem('user');
-    const parsedUser = JSON.parse(storedUser);
-
-    if (parsedUser && parsedUser.name === 'josue') {
-      setIsAdmin(true);
-    } else {
-      setIsAdmin(false);
-    }
-  };
-
-  useEffect(() => {
-    getAdmin();
-  }, []);
 
   return (
     <Router>
       <ToastContainer/>
-      <Header setIsAdmin={setIsAdmin} isAdmin={isAdmin}/>
-        <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login getAdmin={getAdmin} setIsAdmin={setIsAdmin} />}/>
-            <Route path="/home" element={<Home/>} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path='/cadastrar-item' element={<CadastrarItem />} />
-            <Route path='/product/:id' element={<Product isAdmin={isAdmin} />} />
-            <Route path='/teste' element={<Teste />} />
-            <Route path='/categoria/:id' element={<Categoria />} />
-            <Route path='/editar-item' element={<Editaritem />} />
-            <Route path='*' element={<ErrorPage />} />
-        </Routes>
-      <Footer />
+      <AuthProvider>
+        <Header/>
+          <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login  />}/>
+              <Route path="/home" element={<Home/>} />
+              <Route path="/sobre" element={<Sobre />} />
+              <Route path='/cadastrar-item' element={<CadastrarItem />} />
+              <Route path='/product/:id' element={<Product />} />
+              <Route path='/teste' element={<Teste />} />
+              <Route path='/categoria/:id' element={<Categoria />} />
+              <Route path='/editar-item' element={<Editaritem />} />
+              <Route path='*' element={<ErrorPage />} />
+          </Routes>
+        <Footer />
+      </AuthProvider>
     </Router>
   )
 }

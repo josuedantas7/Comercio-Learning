@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import { CiShop } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
@@ -18,8 +18,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
 import PropType from 'prop-types';
+import { AuthContext } from '../assets/context/AuthContext';
 
-const Header = ({isAdmin, setIsAdmin}) => {
+const Header = () => {
+
+  const { signed,logout } = useContext(AuthContext)
 
   const navigate = useNavigate();
 
@@ -41,13 +44,12 @@ const Header = ({isAdmin, setIsAdmin}) => {
     setAnchorElUser(null);
   };
 
-  function logout(){
-    localStorage.removeItem('user', 'token');
-    setIsAdmin(false)
-    navigate('/login');
-  }  
+  function logoutFunction(){
+    logout()
+  } 
+
   const handleLogout = () => {
-    logout();
+    logoutFunction();
     handleCloseUserMenu();
   };
 
@@ -56,7 +58,7 @@ const Header = ({isAdmin, setIsAdmin}) => {
   }
 
   const renderAdminMenu = () => {
-    if (isAdmin) {
+    if (signed) {
       return (
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
@@ -214,8 +216,3 @@ const Header = ({isAdmin, setIsAdmin}) => {
 };
 
 export default Header;
-
-Header.propTypes = {
-  isAdmin: PropType.bool.isRequired,
-  setIsAdmin: PropType.func.isRequired,
-}

@@ -1,19 +1,13 @@
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import InputLogin from '../components/Input/InputLogin'
 import userLogo from '../assets/logouser.png'
 import imagemLogin from '../assets/icon-1728552_1280.jpg'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-
-
-import axios from 'axios'
 import ToastMessage from '../components/ToastMessage/ToastMessage';
 
-import PropTypes from 'prop-types'
+import { AuthContext } from '../assets/context/AuthContext';
 
-const Login = ({getAdmin}) => {
-
-    const navigate = useNavigate()
+const Login = () => {
 
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -21,32 +15,18 @@ const Login = ({getAdmin}) => {
     const [messageToast,setMessageToast] = useState('')
     const [typeToast,setTypeToast] = useState('')
 
+    const { login } = useContext(AuthContext)
+
     const notify = () => toast(messageToast, {type: typeToast});
 
 
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
         setEmail(email)
         setPassword(password)
-        axios.post('https://comercialluna.onrender.com/auth/login', {email,password}).then(response => {
-            const { _id,name,email } = response.data.user
-            localStorage.setItem('token', response.data.token)
-            localStorage.setItem('user', JSON.stringify({_id,name,email}))
-            getAdmin()
-            console.log(response.data)
-            setMessageToast(response.data.msg)
-            setTypeToast('success')
-            setToggleToast(true)
-            setTimeout(() => {
-                navigate('/home')
-            },1000)
-        }).catch(error => {
-            setMessageToast(error.response.data.msg)
-            setTypeToast('error')
-            setToggleToast(true)
-            console.log(error)
-        })
+        const data = {email,password}
+        await login(data)
     }
 
   return (
@@ -69,8 +49,3 @@ const Login = ({getAdmin}) => {
 }
 
 export default Login
-
-Login.propTypes = {
-    getAdmin: PropTypes.func.isRequired,
-    setIsAdmin: PropTypes.func.isRequired
-}
