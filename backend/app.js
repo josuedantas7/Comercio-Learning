@@ -129,23 +129,23 @@ app.get('/product/:id', async (req,res) => {
 })
 
 // UPDATE PRODUCT
-app.post('/product/:id', async (req,res) => {
-    const id = req.params.id
-    const { name, price, category, image, disponivel } = req.body
+app.post('/product/:id', async (req, res) => {
+    const id = req.params.id;
+    const { name, price, category, image, disponivel } = req.body;
 
     // validations
 
-
-    if (!name && !price && !category && !image) {
+    if (!name && !price && !category && !image && disponivel === undefined) {
         return res.status(422).json({ msg: 'Nenhum dado de atualização fornecido' });
     }
 
-    const productExists = await Product.findOne({_id: id})
+    const productExists = await Product.findOne({ _id: id });
 
     if (!productExists) {
-        return res.status(422).json({msg: 'Produto não existe'})
+        return res.status(422).json({ msg: 'Produto não existe' });
     }
 
+    // Build the update object with only the fields that are present in the request body
     const updateObject = {};
     if (name) updateObject.name = name;
     if (price) updateObject.price = price;
@@ -153,8 +153,7 @@ app.post('/product/:id', async (req,res) => {
     if (image) updateObject.image = image;
     if (disponivel !== undefined) updateObject.disponivel = disponivel;
 
-
-    // update product
+    // Update product
     try {
         const product = await Product.findByIdAndUpdate(id, updateObject, { new: true });
 
@@ -163,7 +162,7 @@ app.post('/product/:id', async (req,res) => {
         console.log(error);
         res.status(500).json({ msg: error });
     }
-})
+});
 
 // Register User
 

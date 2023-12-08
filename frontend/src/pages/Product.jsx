@@ -56,7 +56,7 @@ const Product = () => {
 
 
   return (
-    <div>
+    <div className='mb-32'>
         <PrimaryTitle botaoVoltar={true} title='Descrição do item:'/>
         <div className='flex justify-evenly'>
             <div className='mt-12 flex flex-col gap-3'>
