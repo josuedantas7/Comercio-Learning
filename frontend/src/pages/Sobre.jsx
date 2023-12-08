@@ -26,7 +26,7 @@ import PrimaryTitle from '../components/Text/PrimaryTitle';
 
 SwiperCore.use([Autoplay, Navigation, Pagination])
 
-const images = [imagem1,imagem2,imagem3,img1,img2,img4,img5,img6,img8,img9]
+const images = [imagem1,imagem2,img8,img9,imagem3,img1,img2,img4,img5,img6]
 
 
 const About = () => {
