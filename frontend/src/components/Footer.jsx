@@ -16,7 +16,7 @@ const Footer = () => {
                     <FaWhatsapp className='text-white hover:text-green-600 duration-300 text-3xl'/>
                 </a>
             </div>
-            <h1 className='text-white font-semibold'>Todos os direitos reservados © Comercial Luna</h1>
+            <h1 className='text-white text-center font-semibold'>Todos os direitos reservados © Comercial Luna</h1>
         </footer>
     </div>
   )
