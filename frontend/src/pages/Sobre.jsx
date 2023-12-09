@@ -23,6 +23,7 @@ import 'swiper/css/pagination';
 
 import SwiperCore from 'swiper'
 import PrimaryTitle from '../components/Text/PrimaryTitle';
+import BannerHome from '../components/Banner/BannerHome';
 
 SwiperCore.use([Autoplay, Navigation, Pagination])
 
@@ -31,7 +32,8 @@ const images = [imagem1,imagem2,img8,img9,imagem3,img1,img2,img4,img5,img6]
 
 const About = () => {
   return (
-    <div className='text-gray-800'>
+    <div className='text-gray-800 mb-32'>
+        <BannerHome/>
         <PrimaryTitle title='Sobre o Comercial Luna' botaoVoltar={true}/>
         <div className='flex w-full max-[1000px]:flex-col max-[1000px]:items-center'>
           <div className='w-1/2 max-[1000px]:w-full flex pl-32 gap-4 pr-8 flex-col mt-4 max-[1000px]:pl-20 max-[650px]:pl-8 max-[460px]:pl-2'>
@@ -76,26 +78,6 @@ const About = () => {
                   </a>
                 </p>
               </div>
-            </div>
-            <div className='w-1/2 mb-32 max-[1000px]:mb-4'>
-              <Swiper
-                modules={[EffectFade]}
-                effect="fade"
-                autoplay={{ delay: 2000 }}
-                loop={true}
-                navigation={{
-                  nextEl: '.swiper-button-next',
-                  prevEl: '.swiper-button-prev',
-                }}
-                pagination={{ clickable: true }}
-                className='min-[1000px]:w-[600px] h-[300px] max-[1000px]:w-[600px] max-[790px]:w-[500px] max-[560px]:w-[400px] max-[560px]:h-[300px] max-[430px]:w-[380px] max-[380px]:w-[335px] max-[410px]:w-[370px] max-[400px]:w-[350px] max-[360px]:w-[320px]'
-              >
-                <div className="swiper-button-next" style={{ color: 'white' }}></div>
-                <div className="swiper-button-prev" style={{ color: 'white' }}></div>
-                {images.map((i, el) => {
-                  return <SwiperSlide key={el}><img src={i} className='w-full max-[1500px]:w-[600px] h-full'/></SwiperSlide>;
-                })}
-              </Swiper>
             </div>
           </div>
           <div className='w-1/2 flex flex-col justify-center max-[1350px]:items-center max-[1350px]:justify-start pr-32 max-[1000px]:w-full max-[1000px]:items-start pl-20 max-[1000px]:pr-0 max-[1000px]:mb-32 max-[650px]:pl-8 max-[460px]:pl-2'>

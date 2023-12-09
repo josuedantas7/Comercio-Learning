@@ -28,24 +28,29 @@ export const AuthProvider = ({ children }) => {
     }, [])
 
 
-    const login = async ({email, password}) => {
+    const login = async ({ email, password }) => {
         try {
-            const response = await axios.post('https://comercialluna.onrender.com/auth/login', { email, password})
+            const response = await axios.post('https://comercialluna.onrender.com/auth/login', { email, password });
+    
             if (response.data.error) {
-                alert(response.data.error)
+                // Tratamento de erro caso haja algum erro retornado pela API
+                return { type: false, msg: response.data.msg }; // Retornar um objeto indicando um erro
             } else {
-                setUser(response.data.user)
-
-                axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`
-
-                localStorage.setItem('user', JSON.stringify(response.data.user))
-                localStorage.setItem('token', response.data.token)
-                Navigate('/home')
+                setUser(response.data.user);
+    
+                axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+    
+                localStorage.setItem('user', JSON.stringify(response.data.user));
+                localStorage.setItem('token', response.data.token);
+                
+                // Retorna um objeto indicando sucesso
+                return { type: true, msg: 'Logado com sucesso' };
             }
         } catch (error) {
-            alert(error)
+            // Tratamento de erro caso ocorra uma exceção durante a chamada à API
+            return { type: false, msg: 'Erro ao realizar o login.' };
         }
-    }
+    };
 
     const logout = () => {
         localStorage.clear()

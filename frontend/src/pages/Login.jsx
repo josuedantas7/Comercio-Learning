@@ -6,8 +6,11 @@ import { toast } from 'react-toastify';
 import ToastMessage from '../components/ToastMessage/ToastMessage';
 
 import { AuthContext } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+
+    const Navigate = useNavigate()
 
     const [email,setEmail] = useState('')
     const [password,setPassword] = useState('')
@@ -21,12 +24,23 @@ const Login = () => {
 
 
 
-    async function handleSubmit(e){
-        e.preventDefault()
-        setEmail(email)
-        setPassword(password)
-        const data = {email,password}
-        await login(data)
+    async function handleSubmit(e) {
+        e.preventDefault();
+        setEmail(email);
+        setPassword(password);
+        const response = await login({ email, password })
+        if (response.type) {
+            setMessageToast(response.msg)
+            setTypeToast('success')
+            setToggleToast(true)
+            setTimeout(() => {
+                Navigate('/home')
+            },1500)
+        } else {
+            setMessageToast(response.msg)
+            setTypeToast('error')
+            setToggleToast(true)
+        }
     }
 
   return (

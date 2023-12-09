@@ -21,28 +21,28 @@ const CardCategorias = ({ categoria }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const getDados = async () => {
-            try {
-                const response = await axios.get('https://comercialluna.onrender.com/product');
-                const products = response.data.products;
+    const getDados = async () => {
+        try {
+            const response = await axios.get('https://comercialluna.onrender.com/product');
+            const products = response.data.products;
 
-                const newImages = [];
-                for (const item of products) {
-                    if (item.category === categoria && !images.includes(item.image)) {
-                        newImages.push(item.image);
-                    }
+            const newImages = [];
+            for (const item of products) {
+                if (item.category === categoria && !images.includes(item.image)) {
+                    newImages.push(item.image);
                 }
-
-                setImages([...images, ...newImages]);
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-                setIsLoading(false);
             }
-        };
 
-        getDados();
-    }, [images,categoria]);
+            setImages([...images, ...newImages]);
+            setIsLoading(false);
+        } catch (error) {
+            console.error(error);
+            setIsLoading(false);
+        }
+    };
+
+    getDados();
+}, [images,categoria]);
 
     return (
         <>
@@ -54,8 +54,8 @@ const CardCategorias = ({ categoria }) => {
                             <Swiper
                                 modules={[EffectFade]}
                                 effect="fade"
-                                autoplay={{ delay: 2000 }}
-                                loop={false}
+                                autoplay={{ delay: 3000 }}
+                                loop={true}
                                 navigation={{
                                     nextEl: '.swiper-button-next',
                                     prevEl: '.swiper-button-prev',
