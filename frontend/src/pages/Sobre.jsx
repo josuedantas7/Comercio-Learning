@@ -1,33 +1,8 @@
 import Tooltip from '@mui/material/Tooltip';
 import Button from '@mui/material/Button';
 
-import imagem1 from '../assets/ComercialLuna.png'
-import imagem2 from '../assets/ComercialLuna2.png'
-import imagem3 from '../assets/ComercialLuna3.png'
-import img1 from '../assets/img1.jpg'
-import img2 from '../assets/img2.jpg'
-import img3 from '../assets/img3.jpg'
-import img4 from '../assets/img4.jpg'
-import img5 from '../assets/img5.jpg'
-import img6 from '../assets/img6.jpg'
-import img8 from '../assets/img8.jpg'
-import img9 from '../assets/img9.jpg'
-
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper/modules';
-
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-import SwiperCore from 'swiper'
 import PrimaryTitle from '../components/Text/PrimaryTitle';
 import BannerHome from '../components/Banner/BannerHome';
-
-SwiperCore.use([Autoplay, Navigation, Pagination])
-
-const images = [imagem1,imagem2,img8,img9,imagem3,img1,img2,img4,img5,img6]
 
 
 const About = () => {
