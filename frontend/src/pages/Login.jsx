@@ -26,6 +26,12 @@ const Login = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        if (!email || !password) {
+            setMessageToast('Preencha todos os campos!')
+            setTypeToast('error')
+            setToggleToast(true)
+            return
+        }
         setEmail(email);
         setPassword(password);
         const response = await login({ email, password })
@@ -35,7 +41,7 @@ const Login = () => {
             setToggleToast(true)
             setTimeout(() => {
                 Navigate('/home')
-            },1500)
+            },500)
         } else {
             setMessageToast(response.msg)
             setTypeToast('error')
@@ -50,8 +56,8 @@ const Login = () => {
             <div className='border-2 rounded-2xl mx-auto w-[60%] max-[550px]:w-[90%] flex flex-col gap-5 h-[400px]'>
                 <img className='w-[70px] -translate-y-9 rounded-full mx-auto h-[70px]' src={userLogo}/>
                 <h1 className='text-3xl text-center'>Login</h1>
-                <InputLogin label='Email' onChange={setEmail}/>         
-                <InputLogin label='Senha' onChange={setPassword}/>
+                <InputLogin handleSubmit={handleSubmit} label='Email' onChange={setEmail}/>         
+                <InputLogin handleSubmit={handleSubmit} label='Senha' onChange={setPassword}/>
                 <button className='bg-green-600 hover:bg-red-500 w-[300px] mx-auto rounded-lg py-3 text-white font-bold' onClick={handleSubmit} type='button'>Logar</button>      
             </div>
         </div>

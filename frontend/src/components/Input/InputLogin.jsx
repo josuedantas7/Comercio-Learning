@@ -4,7 +4,7 @@ import Proptypes from 'prop-types'
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 
-const InputLogin = ({label,onChange}) => {
+const InputLogin = ({handleSubmit,label,onChange}) => {
   return (
     <div className='flex justify-center'>
         <Box
@@ -15,7 +15,7 @@ const InputLogin = ({label,onChange}) => {
         noValidate
         autoComplete="off"
         >
-            <TextField onChange={(e) => onChange(e.target.value)} id="outlined-basic" label={label} variant="outlined" />
+            <TextField onSubmit={() => handleSubmit()} onChange={(e) => onChange(e.target.value)} id="outlined-basic" label={label} variant="outlined" />
         </Box>
     </div>
   )
@@ -25,5 +25,6 @@ export default InputLogin
 
 InputLogin.propTypes = {
     label: Proptypes.string.isRequired,
-    onChange: Proptypes.func.isRequired
+    onChange: Proptypes.func.isRequired,
+    handleSubmit: Proptypes.func.isRequired
 }

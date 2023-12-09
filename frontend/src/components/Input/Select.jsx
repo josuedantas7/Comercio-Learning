@@ -29,6 +29,7 @@ export default function BasicSelect({categoria,setCategoria}) {
           <MenuItem value={'Alimentos'}>Alimentos</MenuItem>
           <MenuItem value={'Bebidas'}>Bebidas</MenuItem>
           <MenuItem value={'Higiene'}>Higiene</MenuItem>
+          <MenuItem value={'Cervejas'}>Cervejas</MenuItem>
         </Select>
       </FormControl>
     </Box>
