@@ -2,6 +2,8 @@ import {useState, useEffect, createContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
+import Proptypes from 'prop-types'
+
 
 export const AuthContext = createContext()
 
@@ -71,4 +73,9 @@ export const AuthProvider = ({ children }) => {
             {children}
         </AuthContext.Provider>
     )
+}
+
+
+AuthProvider.propTypes = {
+    children: Proptypes.node.isRequired
 }
