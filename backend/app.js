@@ -115,6 +115,39 @@ app.get('/product', async (req,res) => {
     res.status(200).json({products})
 })
 
+// GET ALL IMAGES AND NAME OF CATEGORY
+// GET DISTINCT CATEGORIES AND IMAGES
+app.get('/category', async (req, res) => {
+    try {
+        const categoriesWithImages = await Product.aggregate([
+            {
+                $group: {
+                    _id: "$category",
+                    images: { $push: "$image" }
+                }
+            }
+        ]);
+
+        const distinctCategories = categoriesWithImages.map(category => ({
+            category: category._id,
+            images: category.images
+        }));
+
+        res.status(200).json({ categories: distinctCategories });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ msg: error });
+    }
+});
+
+// GET ALL PRODUCTS BY CATEGORY
+
+app.get('/category/:category', async (req,res) => {
+    const category = req.params.category
+    const products = await Product.find({category: category})
+    res.status(200).json({products})
+})
+
 // GET ONE PRODUCT
 
 app.get('/product/:id', async (req,res) => {
