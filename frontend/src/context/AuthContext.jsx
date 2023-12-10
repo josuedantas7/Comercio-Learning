@@ -15,11 +15,19 @@ export const AuthProvider = ({ children }) => {
             const storeUser = localStorage.getItem('user')
     
             if (storeToken) {
-                const data = await axios.post('https://comercialluna.onrender.com/validate-token', { token: storeToken })
-                if (data) {
-                    setUser(JSON.parse(storeUser))
+                const data = await axios.post(
+                    'https://comercialluna.onrender.com/validate-token',
+                    {},
+                    {
+                      headers: {
+                        Authorization: `Bearer ${storeToken}`
+                      }
+                    }
+                  );
+                if (data.status === 200) {
+                    setUser(JSON.parse(storeUser));
                 } else {
-                    Navigate('/login')
+                    Navigate('/login');
                 }
             }
         }

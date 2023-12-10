@@ -17,7 +17,6 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
-import PropType from 'prop-types';
 import { AuthContext } from '../context/AuthContext';
 
 const Header = () => {
