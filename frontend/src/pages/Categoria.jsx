@@ -14,9 +14,9 @@ const Categoria = () => {
 
 
     function getDados(){
-        axios.get('https://comercialluna.onrender.com/product')
+        axios.get(`https://comercialluna.onrender.com/category/${id}`)
         .then(response => {
-            setDados(response.data.products.filter(item => item.category === id))
+            setDados(response.data.products)
             setIsLoading(false)
         })
         .catch(err => {

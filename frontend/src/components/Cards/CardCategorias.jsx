@@ -15,69 +15,38 @@ import Proptypes from 'prop-types';
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
-const CardCategorias = ({ categoria }) => {
-
-    const [images, setImages] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-    const getDados = async () => {
-        try {
-            const response = await axios.get('https://comercialluna.onrender.com/product');
-            const products = response.data.products;
-
-            const newImages = [];
-            for (const item of products) {
-                if (item.category === categoria && !images.includes(item.image)) {
-                    newImages.push(item.image);
-                }
-            }
-
-            setImages([...images, ...newImages]);
-            setIsLoading(false);
-        } catch (error) {
-            console.error(error);
-            setIsLoading(false);
-        }
-    };
-
-    getDados();
-}, [images,categoria]);
+const CardCategorias = ({ category,images }) => {
 
     return (
-        <>
-            {!isLoading ? (
-                <Link to={`/categoria/${categoria}`} className='border-2 flex flex-col rounded-lg w-[300px]'>
-                {images.length > 0 && (
-                    <>
-                        <div className='max-w-[295px]'>
-                            <Swiper
-                                modules={[EffectFade]}
-                                effect="fade"
-                                autoplay={{ delay: 3000 }}
-                                loop={true}
-                                navigation={{
-                                    nextEl: '.swiper-button-next',
-                                    prevEl: '.swiper-button-prev',
-                                }}
-                                className='w-[300px]'
-                            >
-                                <div className="swiper-button-next" style={{ color: 'gray' }}></div>
-                                <div className="swiper-button-prev" style={{ color: 'gray' }}></div>
-                                {images.map((i, el) => (
-                                    <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-                        <div className=''>
-                            <h1 className='text-3xl text-center text-gray-700 font-bold'>{categoria}</h1>
-                            <p className='text-center text-gray-700 mb-2'>Quantidade de itens achados: {images.length}</p>
-                        </div>
-                    </>
-                )}
-            </Link>
-            ): <LoadingComponent/>}
-        </>
+        <Link to={`/categoria/${category}`} className='border-2 flex flex-col rounded-lg w-[300px]'>
+        {images.length > 0 && (
+            <>
+                <div className='max-w-[295px]'>
+                    <Swiper
+                        modules={[EffectFade]}
+                        effect="fade"
+                        autoplay={{ delay: 3000 }}
+                        loop={true}
+                        navigation={{
+                            nextEl: '.swiper-button-next',
+                            prevEl: '.swiper-button-prev',
+                        }}
+                        className='w-[300px]'
+                    >
+                        <div className="swiper-button-next" style={{ color: 'gray' }}></div>
+                        <div className="swiper-button-prev" style={{ color: 'gray' }}></div>
+                        {images.map((i, el) => (
+                            <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
+                        ))}
+                    </Swiper>
+                </div>
+                <div className=''>
+                    <h1 className='text-3xl text-center text-gray-700 font-bold'>{category}</h1>
+                    <p className='text-center text-gray-700 mb-2'>Quantidade de itens achados: {images.length}</p>
+                </div>
+            </>
+        )}
+    </Link>
     );
 };
 
@@ -85,5 +54,6 @@ export default CardCategorias;
 
 
 CardCategorias.propTypes = {
-    categoria: Proptypes.string.isRequired,
+    category: Proptypes.string.isRequired,
+    images: Proptypes.array.isRequired,
 }

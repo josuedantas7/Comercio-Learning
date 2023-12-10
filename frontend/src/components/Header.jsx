@@ -160,11 +160,13 @@ const Header = () => {
                     <Link to={`/sobre`}>Sobre</Link>
                   </Typography>
                 </MenuItem>
-                <MenuItem onClick={handleCloseNavMenu}>
+                {!signed && (
+                  <MenuItem onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link to={`/login`}>Login</Link>
                   </Typography>
                 </MenuItem>
+                )}
               </Menu>
             </Box>
             <Typography
@@ -198,12 +200,14 @@ const Header = () => {
               >
                 <Link to={`/sobre`}>Sobre</Link>
               </Button>
-              <Button
+              {!signed && (
+                <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
                 <Link to={`/login`}>Login</Link>
               </Button>
+              )}
             </Box>
 
             {renderAdminMenu()}
