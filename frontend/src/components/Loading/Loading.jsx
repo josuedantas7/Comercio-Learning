@@ -3,7 +3,9 @@ import Loading from './Eclipse-1s-200px.gif'
 
 const LoadingComponent = () => {
   return (
-    <img src={Loading} className='w-[300px] h-[300px]'/>
+    <div className='w-full flex justify-center'>
+      <img src={Loading} className='w-[300px] h-[300px]'/>
+    </div>
   )
 }
 

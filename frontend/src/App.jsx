@@ -4,6 +4,7 @@ import CardCategorias from './components/Cards/CardCategorias'
 import PrimaryTitle from './components/Text/PrimaryTitle'
 import { useEffect, useState } from 'react'
 import Loading2 from './components/Loading/Loading2'
+import LoadingComponent from './components/Loading/Loading'
 
 const App = () => {
 
@@ -26,7 +27,7 @@ const App = () => {
         <BannerHome/>
           <PrimaryTitle title={'Itens Disponíveis'} />
         {loading ? (
-          <Loading2/>
+          <LoadingComponent/>
         ): (
           <div className='flex flex-wrap gap-4 justify-center mb-32'>
             {categorys.map((item) => (
