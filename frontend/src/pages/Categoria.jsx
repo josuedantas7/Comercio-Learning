@@ -52,7 +52,7 @@ const Categoria = () => {
             ))}
         </div>
         ): (
-            <div className='flex justify-center'><Loading2/></div>
+            <div className='flex justify-center'><LoadingComponent/></div>
         )}
       </>
     </div>
