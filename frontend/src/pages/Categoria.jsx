@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import LoadingComponent from '../components/Loading/Loading'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
+import Loading2 from '../components/Loading/Loading2'
 
 const Categoria = () => {
 
@@ -51,7 +52,7 @@ const Categoria = () => {
             ))}
         </div>
         ): (
-            <div className='flex justify-center'><LoadingComponent/></div>
+            <div className='flex justify-center'><Loading2/></div>
         )}
       </>
     </div>

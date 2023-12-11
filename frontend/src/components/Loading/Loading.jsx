@@ -1,5 +1,5 @@
 import React from 'react'
-import Loading from './Spin-1s-200px.gif'
+import Loading from './Eclipse-1s-200px.gif'
 
 const LoadingComponent = () => {
   return (
