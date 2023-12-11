@@ -60,7 +60,7 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
 
   return (
     <Link to={`/product/${id}`}>
-      <Card style={{width: '300px'}} sx={{ maxWidth: 300 }}>
+      <Card className='relative' style={{width: '300px', height: '580px'}} sx={{ maxWidth: 300 }}>
         <CardActionArea>
           <div className='max-w-[300px] max-h-[400px]'>
             <img
@@ -81,11 +81,9 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
             </Typography>
           </CardContent>
         </CardActionArea>
-        <CardActions>
-          <Button className={`${disponivel ? null : 'bg-red-300'}`} size="small" color="primary">
-            {disponivel ? <p className='text-white bg-green-500 py-2 px-2 rounded-md'>Disponivel</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
-          </Button>
-        </CardActions>
+        <button className={`absolute bottom-0 right-0 left-0 ${disponivel ? 'bg-green-500' : 'bg-red-300'}`} size="small" color="primary">
+          {disponivel ? <p className='text-white bg-green-500 py-2 px-2 rounded-md'>Disponivel</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
+        </button>
       </Card>
     </Link>
   );
