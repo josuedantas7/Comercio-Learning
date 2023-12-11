@@ -62,12 +62,11 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
     <Link to={`/product/${id}`}>
       <Card style={{width: '300px'}} sx={{ maxWidth: 300 }}>
         <CardActionArea>
-          <div>
-            <CardMedia
-              component="img"
-              image={image}
-              alt="green iguana"
-              className='w-[300px] h-[400px]'
+          <div className='max-w-[300px] max-h-[400px]'>
+            <img
+              src={image}
+              alt="Imagem item"
+              className='w-[300px] h-[400px] object-contain'
             />
           </div>
           <CardContent>
