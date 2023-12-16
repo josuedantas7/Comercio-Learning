@@ -8,9 +8,22 @@ import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { CartContext } from '../../context/CartContext';
+import { useContext } from 'react';
 
 export default function MultiActionAreaCard({id,image,produto,disponivel,category,price}) {
 
+  const { addCart } = useContext(CartContext)
+
+
+  const addProcutOnCart = () => {
+    let productAdd = {
+      produto,
+      price,
+    }
+
+    addCart(productAdd)
+  }
 
 
   const [isMobile, setIsMobile] = useState(false);
@@ -34,10 +47,10 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
 
   if (isMobile) {
     return (
-      <Link to={`/product/${id}`} className={`border-2 mx-8 max-[400px]:mx-1 ${disponivel ? 'border-green-600' : 'border-red-300'} w-full h-[150px] flex flex-wrap rounded-xl`}>
-        <div className='w-[35%] h-[150px] max-[400px]:w-[45%]'>
+      <div className={`border-2 mx-8 max-[400px]:mx-1 ${disponivel ? 'border-green-600' : 'border-red-300'} w-full h-[150px] flex flex-wrap rounded-xl`}>
+        <Link to={`/product/${id}`} className='w-[35%] h-[150px] max-[400px]:w-[45%]'>
           <img src={image} alt="" className='w-[150px] h-[150px] py-1 rounded-xl border-r-[1px]'/>
-        </div>
+        </Link>
         <div className='flex flex-col w-[65%] max-[400px]:w-[55%] items-center'>
           <div>
             <p className='text-lg font-bold text-gray-700 text-center'>{produto}</p>
@@ -50,18 +63,18 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
           </div>
           <div>
             <Button className={`${disponivel ? null : 'bg-red-300'}`} size="small" color="primary">
-              {disponivel ? <p className='text-white bg-green-500 py-2 px-2 rounded-md'>Disponivel</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
+              {disponivel ? <p onClick={() => addProcutOnCart()} className='text-white bg-green-500 py-2 px-2 rounded-md'>Adicionar ao carrinho</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
             </Button>
           </div>
         </div>
-      </Link>
+      </div>
     )
   }
 
   return (
-    <Link to={`/product/${id}`}>
+    <div>
       <Card className='relative' style={{width: '300px', height: '580px'}} sx={{ maxWidth: 300 }}>
-        <CardActionArea>
+        <Link to={`/product/${id}`}>
           <div className='max-w-[300px] max-h-[400px]'>
             <img
               src={image}
@@ -80,12 +93,12 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
               R$ {price}
             </Typography>
           </CardContent>
-        </CardActionArea>
+        </Link>
         <button className={`absolute bottom-0 right-0 left-0 ${disponivel ? 'bg-green-500' : 'bg-red-300'}`} size="small" color="primary">
-          {disponivel ? <p className='text-white bg-green-500 py-2 px-2 rounded-md'>Disponivel</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
+          {disponivel ? <p onClick={() => addProcutOnCart()} className='text-white bg-green-500 py-2 px-2 rounded-md'>Adicionar ao carrinho</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
         </button>
       </Card>
-    </Link>
+    </div>
   );
 }
 

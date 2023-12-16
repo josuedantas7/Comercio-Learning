@@ -17,16 +17,23 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 
+import { FiShoppingCart } from "react-icons/fi";
+import { IoMdCloseCircle } from "react-icons/io";
+import { MdClose } from "react-icons/md";
+
 import { AuthContext } from '../context/AuthContext';
+import { CartContext } from '../context/CartContext';
 
 const Header = () => {
 
   const { signed,logout } = useContext(AuthContext)
+  const { cart, total, removeItem } = useContext(CartContext)
 
   const navigate = useNavigate();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [openCart, setOpenCart] = React.useState(false)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -99,7 +106,7 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full h-16 bg-blue-500">
+    <div className="w-full h-16 bg-blue-500 relative">
       <AppBar position="static">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
@@ -201,7 +208,7 @@ const Header = () => {
                 <Link to={`/sobre`}>Sobre</Link>
               </Button>
               {!signed && (
-                <Button
+              <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
@@ -209,11 +216,36 @@ const Header = () => {
               </Button>
               )}
             </Box>
-
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl'/>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
       </AppBar>
+      {openCart && (
+        <div className='absolute top-[70px] max-[900px]:top-[65px] max-[600px]:top-[63px] rounded-b-2xl border-b-2 border-l-2 border-black z-50 right-0 w-[500px] max-[540px]:w-[100%] bg-gray-300 px-12 max-[540px]:px-2'>
+          <div className='flex items-center mt-4'>
+            <p onClick={() => setOpenCart(false)} className='text-3xl cursor-pointer'><MdClose/></p>
+            <p className='text-2xl font-bold text-center my-2 absolute right-0 left-0 mx-auto w-[150px]'>Carrinho</p>
+          </div>
+          <div className='flex flex-col gap-2 mt-5'>
+            {cart.map((item,index) => (
+              <div key={index} className='flex justify-between border-2 rounded-md border-black px-2 items-center relative'>
+                <p className='text-lg font-semibold w-[100px]'>{item.produto}</p>
+                <p className='text-lg font-semibold absolute left-0 right-0 mx-auto text-center w-[80px]'>R$ {item.price}</p>
+                <button className='font-bold' onClick={() => removeItem(item.produto)}><IoMdCloseCircle className='text-2xl text-red-700'/></button>
+              </div>
+            ))}
+            {cart.length > 0 ? (
+              <div className='flex justify-between items-center'>
+                <p className='text-lg font-semibold'>Total</p>
+                <p className='text-lg font-semibold'>R$ {(total).toFixed(2)}</p>
+              </div>
+            ) : (
+              <p className='text-lg font-semibold text-center'>Carrinho vazio</p>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

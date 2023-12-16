@@ -15,11 +15,13 @@ import Categoria from './pages/Categoria.jsx';
 import Editaritem from './pages/Editaritem.jsx';
 
 import { AuthProvider } from './context/AuthContext.jsx';
+import { CartProvider } from './context/CartContext.jsx';
 
 const Routing = () => {
   return (
     <Router>
       <AuthProvider>
+        <CartProvider>
         <Header />
         <ToastContainer />
         <Routes>
@@ -35,6 +37,7 @@ const Routing = () => {
           <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
+        </CartProvider>
       </AuthProvider>
     </Router>
   );
