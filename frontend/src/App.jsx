@@ -13,9 +13,6 @@ const App = () => {
   const [categorys,setCategorys] = useState([])
   const [loading,setLoading] = useState(true)
 
-  console.log(apiUrl)
-  // console.log(mode)
-
   function getCategorys(){
     axios.get(`${apiUrl}/category`).then(response => {
       setCategorys(response.data.categories)
