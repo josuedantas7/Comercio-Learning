@@ -6,13 +6,18 @@ import { useEffect, useState } from 'react'
 import Loading2 from './components/Loading/Loading2'
 import LoadingComponent from './components/Loading/Loading'
 
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 const App = () => {
 
   const [categorys,setCategorys] = useState([])
   const [loading,setLoading] = useState(true)
 
+  console.log(apiUrl)
+  // console.log(mode)
+
   function getCategorys(){
-    axios.get('https://comercialluna.onrender.com/category').then(response => {
+    axios.get(`${apiUrl}/category`).then(response => {
       setCategorys(response.data.categories)
       setLoading(false)
     })

@@ -6,6 +6,8 @@ import LoadingComponent from '../components/Loading/Loading'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
 import Loading2 from '../components/Loading/Loading2'
 
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 const Categoria = () => {
 
     const { id } = useParams();
@@ -15,7 +17,7 @@ const Categoria = () => {
 
 
     function getDados(){
-        axios.get(`https://comercialluna.onrender.com/category/${id}`)
+        axios.get(`${apiUrl}/category/${id}`)
         .then(response => {
             setDados(response.data.products)
             setIsLoading(false)

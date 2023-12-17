@@ -4,6 +4,8 @@ import axios from 'axios'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
 import { AuthContext } from '../context/AuthContext'
 
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 const Product = () => {
 
     const { signed } = useContext(AuthContext)
@@ -23,7 +25,7 @@ const Product = () => {
     const [isEditing,setIsEditing] = useState(false)
 
     async function getDados(){
-        await axios.get(`https://comercialluna.onrender.com/product/${id}`)
+        await axios.get(`${apiUrl}/product/${id}`)
         .then(response => setDados(response.data.product))
         .catch(err => console.log(err))
     }
@@ -34,7 +36,7 @@ const Product = () => {
 
 
     function editarItem(){
-        axios.post(`https://comercialluna.onrender.com/product/${id}`,{
+        axios.post(`${apiUrl}/product/${id}`,{
             name: name,
             price: price,
             category: category,

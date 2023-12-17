@@ -4,6 +4,8 @@ import Select from '../Input/Select'
 
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 
 const CardCadastrarItem = () => {
 
@@ -17,10 +19,11 @@ const CardCadastrarItem = () => {
   const [alertMessage,setAlertMessage] = useState('')
 
 
+
   function createItem(){
     let precoNumber = Number(preco)
 
-    axios.post('https://comercialluna.onrender.com/product',
+    axios.post(`${apiUrl}/product`,
     {name: produto,
     image: imagem,
     category: categoria, 

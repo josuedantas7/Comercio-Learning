@@ -4,6 +4,8 @@ import axios from 'axios'
 
 import Proptypes from 'prop-types'
 
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 
 export const AuthContext = createContext()
 
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
     
             if (storeToken) {
                 const data = await axios.post(
-                    'https://comercialluna.onrender.com/validate-token',
+                    `${apiUrl}/validate-token`,
                     {},
                     {
                       headers: {
@@ -40,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
     const login = async ({ email, password }) => {
         try {
-            const response = await axios.post('https://comercialluna.onrender.com/auth/login', { email, password });
+            const response = await axios.post(`${apiUrl}/auth/login`, { email, password });
     
             if (response.data.error) {
                 // Tratamento de erro caso haja algum erro retornado pela API
