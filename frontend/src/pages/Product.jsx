@@ -43,7 +43,6 @@ const Product = () => {
             image: image,
             disponivel: disponivel})
             .then(response => {
-                console.log(response)
                 setIsEditing(false)
                 setAlert(true)
                 setAlertMessage('Item editado com sucesso!')

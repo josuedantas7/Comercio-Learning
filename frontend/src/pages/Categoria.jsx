@@ -32,8 +32,6 @@ const Categoria = () => {
         getDados()
     },[])
 
-    console.log(dados)
-
 
   return (
     <div className='mb-32'>

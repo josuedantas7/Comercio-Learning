@@ -30,7 +30,6 @@ const CardCadastrarItem = () => {
     disponivel,
     price: precoNumber})
     .then(response => {
-      console.log(response)
       setAlert(true)
       setAlertMessage('Item cadastrado com sucesso!')
       alert('Item cadastrado com sucesso!')
