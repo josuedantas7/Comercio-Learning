@@ -28,7 +28,7 @@ const About = () => {
               </div>
               <div className='flex gap-2'>
                 <p>Domingo</p>
-                <p className='font-semibold'>7:30 ás 12:00</p>
+                <p className='font-semibold'>7:30 ás 13:00</p>
               </div>
             </div>
             <div className='flex flex-col'>
