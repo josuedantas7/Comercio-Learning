@@ -216,13 +216,13 @@ const Header = () => {
               </Button>
               )}
             </Box>
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl absolute left-0 right-0'/>
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl'/>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
       </AppBar>
       {openCart && (
-        <div className='absolute top-[70px] max-[900px]:top-[65px] max-[600px]:top-[63px] rounded-b-2xl border-b-2 border-l-2 border-black z-50 right-0 w-[500px] max-[540px]:w-[100%] bg-gray-300 px-12 max-[540px]:px-2'>
+        <div className='absolute top-[63px] max-[900px]:top-[65px] max-[600px]:top-[63px] rounded-b-2xl border-b-2 border-l-2 border-black z-50 right-0 w-[500px] max-[540px]:w-[100%] bg-gray-300 px-12 max-[540px]:px-2'>
           <div className='flex items-center mt-4'>
             <p onClick={() => setOpenCart(false)} className='text-3xl cursor-pointer'><MdClose/></p>
             <p className='text-2xl font-bold text-center my-2 absolute right-0 left-0 mx-auto w-[150px]'>Carrinho</p>
