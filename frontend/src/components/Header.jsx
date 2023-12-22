@@ -67,7 +67,7 @@ const Header = () => {
     if (signed) {
       return (
         <Box sx={{ flexGrow: 0 }}>
-          <Tooltip title="Open settings">
+          <Tooltip title="Abrir opções">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar alt="Remy Sharp" src="https://cdn-icons-png.flaticon.com/512/4552/4552981.png" />
             </IconButton>
@@ -192,7 +192,7 @@ const Header = () => {
               }}
             >
               {/* <CiShop className="text-3xl duration-300 hover:scale-110" /> */}
-              <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden'/>
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden'/>     
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -216,7 +216,7 @@ const Header = () => {
               </Button>
               )}
             </Box>
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl'/>
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl mr-[43%] min-[900px]:flex hidden'/>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
