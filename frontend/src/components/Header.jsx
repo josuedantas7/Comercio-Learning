@@ -180,7 +180,6 @@ const Header = () => {
               variant="h5"
               noWrap
               component="a"
-              href="/"
               sx={{
                 mr: 2,
                 display: { xs: 'flex', md: 'none' },
@@ -192,7 +191,8 @@ const Header = () => {
                 textDecoration: 'none',
               }}
             >
-              <CiShop className="text-3xl duration-300 hover:scale-110" />
+              {/* <CiShop className="text-3xl duration-300 hover:scale-110" /> */}
+              <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden'/>
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -216,7 +216,7 @@ const Header = () => {
               </Button>
               )}
             </Box>
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl'/>
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl absolute left-0 right-0'/>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
