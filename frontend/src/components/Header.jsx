@@ -192,7 +192,7 @@ const Header = () => {
               }}
             >
               {/* <CiShop className="text-3xl duration-300 hover:scale-110" /> */}
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden'/>     
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden cursor-pointer'/>     
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -216,7 +216,7 @@ const Header = () => {
               </Button>
               )}
             </Box>
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl mr-[43%] min-[900px]:flex hidden'/>
+            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl mr-[43%] min-[900px]:flex hidden cursor-pointer'/>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
