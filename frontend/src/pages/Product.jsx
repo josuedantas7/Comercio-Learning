@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import PrimaryTitle from '../components/Text/PrimaryTitle'
 import { AuthContext } from '../context/AuthContext'
+import { toast } from 'react-toastify';
+import ToastMessage from '../components/ToastMessage/ToastMessage'
 
 const apiUrl = import.meta.env.VITE_APP_API_URL
 
@@ -14,13 +16,17 @@ const Product = () => {
 
     const [dados,setDados] = useState([])
 
+    const notify = () => toast(messageToast, {type: typeToast});
+
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
     const [category,setCategory] = useState('')
     const [image,setImage] = useState('')
     const [disponivel,setDisponivel] = useState(true)
-    const [alert,setAlert] = useState(false)
-    const [alertMessage,setAlertMessage] = useState('')
+
+    const [toggleToast,setToggleToast] = useState(false)
+    const [messageToast,setMessageToast] = useState('')
+    const [typeToast,setTypeToast] = useState('')
 
     const [isEditing,setIsEditing] = useState(false)
 
@@ -43,14 +49,16 @@ const Product = () => {
             image: image,
             disponivel: disponivel})
             .then(response => {
+                setMessageToast('Item editado com sucesso!')
+                setTypeToast('success')
+                setToggleToast(true)
                 setIsEditing(false)
-                setAlert(true)
-                setAlertMessage('Item editado com sucesso!')
             })
             .catch(err => {
                 console.log(err)
-                setAlert(true)
-                setAlertMessage('Erro ao editar item!')
+                setMessageToast('Erro ao editar item!')
+                setTypeToast('error')
+                setToggleToast(true)
                 setIsEditing(false)
             })
     }
@@ -110,11 +118,7 @@ const Product = () => {
                 )}
             </div>
         )}
-        {alert && (
-            <div className='flex justify-center mt-8'>
-                <p className='text-white font-bold bg-green-500 py-2 px-3 rounded-md'>{alertMessage}</p>
-            </div>
-        )}
+        {toggleToast && <ToastMessage notify={notify} message={messageToast}/>}
     </div>
   )
 }
