@@ -14,7 +14,15 @@ export default function BasicSelect({categoria,setCategoria}) {
   };
 
   return (
-    <Box sx={{ minWidth: 120 }}>
+    <Box
+    className='w-full mx-auto max-[450px]:w-[300px] min-[450px]:w-[400px] min-[600px]:w-[500px] min-[800px]:w-[600px]'
+    component="form"
+    sx={{
+    '& > :not(style)': { width: '100%' },
+    }}
+    noValidate
+    autoComplete="off"
+    >
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Categoria</InputLabel>
         <Select
