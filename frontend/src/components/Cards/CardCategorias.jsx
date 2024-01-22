@@ -24,7 +24,6 @@ const CardCategorias = ({ category,images }) => {
                 <div className='max-w-[295px]'>
                     <Swiper
                         modules={[EffectFade]}
-                        effect="fade"
                         autoplay={{ delay: 3000 }}
                         loop={true}
                         navigation={{
@@ -35,8 +34,8 @@ const CardCategorias = ({ category,images }) => {
                     >
                         <div className="swiper-button-next" style={{ color: 'gray' }}></div>
                         <div className="swiper-button-prev" style={{ color: 'gray' }}></div>
-                        {images.map((i, el) => (
-                            <SwiperSlide key={el}><img src={i} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
+                        {images.map((image, index) => (
+                            <SwiperSlide key={index}><img src={image} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
