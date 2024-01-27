@@ -8,6 +8,7 @@ import ToastMessage from '../components/ToastMessage/ToastMessage'
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage'
 import { storage } from '../services/firebaseConnection'
 import { v4 as uuidV4 } from 'uuid'
+import { useNavigate } from 'react-router-dom'
 
 const apiUrl = import.meta.env.VITE_APP_API_URL
 
@@ -18,8 +19,10 @@ const Product = () => {
     const {id} = useParams()
 
     const [dados,setDados] = useState([])
+    const [loading,setLoading] = useState(false)
 
     const notify = () => toast(messageToast, {type: typeToast});
+    const navigate = useNavigate()
 
     const [name,setName] = useState('')
     const [price,setPrice] = useState('')
@@ -37,6 +40,21 @@ const Product = () => {
         await axios.get(`${apiUrl}/product/${id}`)
         .then(response => setDados(response.data.product))
         .catch(err => console.log(err))
+    }
+
+    async function deleteItem(){
+        await axios.delete(`${apiUrl}/product/${id}`)
+        .then(res => {
+            setMessageToast('Item deletado com sucesso!')
+            setTypeToast('success')
+            setToggleToast(true)
+        })
+        .catch(err => {
+            console.log(err)
+            setMessageToast('Erro ao deletar item!')
+            setTypeToast('error')
+            setToggleToast(true)
+        })
     }
 
     useEffect(() => {
@@ -137,6 +155,13 @@ const Product = () => {
                         setIsEditing(false)
                         getDados()
                     }} className='text-center mx-auto py-3 mt-8 rounded-lg w-[200px] bg-red-500 text-white font-bold hover:bg-green-900'>Cancelar</button>
+                )}
+                {isEditing && (
+                    <button onClick={() => {
+                        deleteItem()
+                        navigate('/gerenciar-produtos')
+                        getDados()
+                    }} className='text-center mx-auto py-3 mt-8 rounded-lg w-[200px] bg-blue-500 text-white font-bold hover:bg-green-900'>Excluir item</button>
                 )}
                 {isEditing && (
                     <button onClick={() => {

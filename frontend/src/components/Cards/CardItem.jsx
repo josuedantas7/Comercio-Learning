@@ -1,19 +1,19 @@
-import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
+import { Button } from '@mui/material';
 import PropTypes from 'prop-types';
 
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { CartContext } from '../../context/CartContext';
 import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function MultiActionAreaCard({id,image,produto,disponivel,category,price}) {
 
   const { addCart } = useContext(CartContext)
+  const { signed } = useContext(AuthContext)
 
 
   const addProcutOnCart = () => {
@@ -48,24 +48,30 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
   if (isMobile) {
     return (
       <div className={`border-2 mx-8 max-[400px]:mx-1 ${disponivel ? 'border-green-600' : 'border-red-300'} w-full h-[150px] flex flex-wrap rounded-xl`}>
-        <Link to={`/product/${id}`} className='w-[35%] h-[150px] max-[400px]:w-[45%]'>
-          <img src={image} alt="" className='w-[150px] h-[150px] py-1 rounded-xl border-r-[1px]'/>
-        </Link>
+        {signed ? (
+          <Link to={`/product/${id}`} className='w-[35%] h-[150px] max-[400px]:w-[45%]'>
+            <img src={image} alt="" className='w-[150px] h-[150px] py-1 rounded-xl border-r-[1px]'/>
+          </Link>
+        ) : (
+          <div className='w-[35%] h-[150px] max-[400px]:w-[45%]'>
+            <img src={image} alt="" className='w-[150px] h-[150px] py-1 rounded-xl border-r-[1px]'/>
+          </div>
+        )}
         <div className='flex flex-col w-[65%] max-[400px]:w-[55%] items-center'>
-          <div>
-            <p className='text-lg font-bold text-gray-700 text-center'>{produto}</p>
-          </div>
-          <div>
-            <p className='text-md text-gray-500 font-semibold'>{category}</p>
-          </div>
-          <div>
-            <p className='text-sm text-gray-900 font-semibold'>R$ {price}</p>
-          </div>
-          <div>
-            <Button className={`${disponivel ? null : 'bg-red-300'}`} size="small" color="primary">
-              {disponivel ? <p onClick={() => addProcutOnCart()} className='text-white bg-green-500 py-2 px-2 rounded-md'>Adicionar ao carrinho</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
-            </Button>
-          </div>
+        <div>
+          <p className='text-lg font-bold text-gray-700 text-center'>{produto}</p>
+        </div>
+        <div>
+          <p className='text-md text-gray-500 font-semibold'>{category}</p>
+        </div>
+        <div>
+          <p className='text-sm text-gray-900 font-semibold'>R$ {price}</p>
+        </div>
+        <div>
+          <Button disabled={!disponivel} className={`${disponivel ? null : 'bg-red-300'}`} size="small" color="primary">
+            {disponivel ? <p onClick={() => addProcutOnCart()} className='text-white bg-green-500 py-2 px-2 disabled:cursor-not-allowed rounded-md'>Adicionar ao carrinho</p> : <p className='text-white bg-red-300  py-2 px-2 rounded-md'>Indisponivel</p>}
+          </Button>
+        </div>
         </div>
       </div>
     )

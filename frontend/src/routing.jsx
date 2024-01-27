@@ -16,6 +16,7 @@ import Editaritem from './pages/Editaritem.jsx';
 
 import { AuthProvider } from './context/AuthContext.jsx';
 import { CartProvider } from './context/CartContext.jsx';
+import GerenciarProdutos from './pages/GerenciarProdutos.jsx';
 
 const Routing = () => {
   return (
@@ -34,6 +35,7 @@ const Routing = () => {
           <Route path='/teste' element={<Teste />} />
           <Route path='/categoria/:id' element={<Categoria />} />
           <Route path='/editar-item' element={<Editaritem />} />
+          <Route path='/gerenciar-produtos' element={<GerenciarProdutos />} />
           <Route path='*' element={<ErrorPage />} />
         </Routes>
         <Footer />
