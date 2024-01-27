@@ -115,6 +115,18 @@ app.get('/product', async (req,res) => {
     res.status(200).json({products})
 })
 
+// DELETE PRODUCT
+app.delete('/product/:id', async (req,res) => {
+    const id = req.params.id
+    const product = await Product.findByIdAndDelete(id)
+
+    if (!product) {
+        return res.status(404).json({msg: 'Produto não encontrado'})
+    }
+
+    res.status(200).json({msg: 'Produto deletado com sucesso'})
+})
+
 // GET ALL IMAGES AND NAME OF CATEGORY
 // GET DISTINCT CATEGORIES AND IMAGES
 app.get('/category', async (req, res) => {
