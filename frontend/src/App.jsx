@@ -3,7 +3,6 @@ import BannerHome from './components/Banner/BannerHome'
 import CardCategorias from './components/Cards/CardCategorias'
 import PrimaryTitle from './components/Text/PrimaryTitle'
 import { useEffect, useState } from 'react'
-import Loading2 from './components/Loading/Loading2'
 import LoadingComponent from './components/Loading/Loading'
 
 const apiUrl = import.meta.env.VITE_APP_API_URL
