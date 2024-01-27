@@ -15,7 +15,7 @@ export default function BasicSelect({categoria,setCategoria}) {
 
   return (
     <Box
-    className='w-full mx-auto max-[450px]:w-[300px] min-[450px]:w-[400px] min-[600px]:w-[500px] min-[800px]:w-[600px]'
+    className='w-full mx-auto max-[450px]:w-[300px] min-[450px]:w-[400px] min-[600px]:w-[500px]'
     component="form"
     sx={{
     '& > :not(style)': { width: '100%' },

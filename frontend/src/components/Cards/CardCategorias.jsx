@@ -32,8 +32,8 @@ const CardCategorias = ({ category,images }) => {
                         }}
                         className='w-[300px]'
                     >
-                        <div className="swiper-button-next" style={{ color: 'gray' }}></div>
-                        <div className="swiper-button-prev" style={{ color: 'gray' }}></div>
+                        <div className="swiper-button-next" style={{ color: 'black' }}></div>
+                        <div className="swiper-button-prev" style={{ color: 'black' }}></div>
                         {images.map((image, index) => (
                             <SwiperSlide key={index}><img src={image} className='w-[296px] rounded-t-md h-[200px]' /></SwiperSlide>
                         ))}

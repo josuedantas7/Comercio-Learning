@@ -90,6 +90,12 @@ const Header = () => {
           >
             <MenuItem href='/cadastrar-item' onClick={() => {
               handleCloseUserMenu()
+              redirect('/gerenciar-produtos')
+            }}>
+              <Typography textAlign="center"><Link to={'/gerenciar-produtos'}>Gerenciar produtos</Link></Typography>
+            </MenuItem>
+            <MenuItem href='/cadastrar-item' onClick={() => {
+              handleCloseUserMenu()
               redirect('/cadastrar-item')
             }}>
               <Typography textAlign="center"><Link to={'/cadastrar-item'}>Cadastrar Item</Link></Typography>
