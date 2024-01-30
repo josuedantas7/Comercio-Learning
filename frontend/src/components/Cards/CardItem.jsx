@@ -28,6 +28,14 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
 
   const [isMobile, setIsMobile] = useState(false);
 
+
+  function formatNumber(value) {
+    return new Intl.NumberFormat("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+    }).format(value);
+}
+
   useEffect(() => {
     const handleResize = () => {
       const windowSize = window.innerWidth;
@@ -65,7 +73,7 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
           <p className='text-md text-gray-500 font-semibold'>{category}</p>
         </div>
         <div>
-          <p className='text-sm text-gray-900 font-semibold'>R$ {price}</p>
+          <p className='text-sm text-gray-900 font-semibold'>{formatNumber(price)}</p>
         </div>
         <div>
           <Button disabled={!disponivel} className={`${disponivel ? null : 'bg-red-300'}`} size="small" color="primary">
@@ -96,7 +104,7 @@ export default function MultiActionAreaCard({id,image,produto,disponivel,categor
               {category}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-              R$ {price}
+              {formatNumber(price)}
             </Typography>
           </CardContent>
         </Link>

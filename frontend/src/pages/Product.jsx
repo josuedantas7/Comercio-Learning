@@ -110,6 +110,13 @@ const Product = () => {
       }
 
 
+      function formatNumber(value) {
+        return new Intl.NumberFormat("pt-BR", {
+            style: "currency",
+            currency: "BRL",
+        }).format(value);
+    }
+
   return (
     <div className='mb-32'>
         <PrimaryTitle botaoVoltar={true} title='Descrição do item:'/>
@@ -121,7 +128,7 @@ const Product = () => {
                 </div>
                 <div>
                     <h1 className='text-3xl max-[510px]:text-xl font-bold'>Preço do Produto:</h1>
-                    {isEditing ? <input type='text' onChange={(e) => setPrice(e.target.value)} className='border-2 border-gray-300 rounded-md w-[300px] h-[40px] px-2' placeholder={dados.price}/> : <p className='text-gray-700 font-semibold text-sm'>{dados.price}</p>}
+                    {isEditing ? <input type='text' onChange={(e) => setPrice(e.target.value)} className='border-2 border-gray-300 rounded-md w-[300px] h-[40px] px-2' placeholder={dados.price}/> : <p className='text-gray-700 font-semibold text-sm'>{formatNumber(dados.price)}</p>}
                 </div>
                 <div>
                     <h1 className='text-3xl max-[510px]:text-xl font-bold'>Categoria do produto:</h1>
