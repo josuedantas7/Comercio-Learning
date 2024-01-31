@@ -210,7 +210,7 @@ const Header = () => {
               {/* <CiShop className="text-3xl duration-300 hover:scale-110" /> */}
               <div className='relative'>
                 <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden cursor-pointer'/>
-                <p>{qtdTotal}</p>
+                <p className='absolute bottom-2 -right-4 text-center rounded-full text-sm px-1 pl-2  z-10 bg-white text-black'>{qtdTotal !== 0 ? qtdTotal : ''}</p>
               </div>     
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
