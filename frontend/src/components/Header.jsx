@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import { CiShop } from 'react-icons/ci';
 import { Link } from 'react-router-dom';
@@ -28,6 +28,16 @@ const Header = () => {
 
   const { signed,logout } = useContext(AuthContext)
   const { cart, total, removeItem } = useContext(CartContext)
+
+  const [qtdTotal, setQtdTotal] = useState(0)
+
+  useEffect(() => {
+    let qtd = 0
+    cart.map(() => {
+      qtd += 1
+    })
+    setQtdTotal(qtd)
+  },[cart])
 
   const navigate = useNavigate();
 
@@ -198,7 +208,10 @@ const Header = () => {
               }}
             >
               {/* <CiShop className="text-3xl duration-300 hover:scale-110" /> */}
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden cursor-pointer'/>     
+              <div className='relative'>
+                <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl max-[900px]:flex hidden cursor-pointer'/>
+                <p>{qtdTotal}</p>
+              </div>     
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <Button
@@ -222,7 +235,10 @@ const Header = () => {
               </Button>
               )}
             </Box>
-            <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl mr-[43%] min-[900px]:flex hidden cursor-pointer'/>
+            <div className='relative mr-20 min-[900px]:flex hidden'>
+              <FiShoppingCart onClick={() => setOpenCart(!openCart)} className='text-3xl min-[900px]:flex hidden cursor-pointer'/>
+              <p className='bg-white rounded-full absolute px-2 -top-2 -right-3 text-black'>{qtdTotal !== 0 ? qtdTotal : ''}</p>
+            </div>
             {renderAdminMenu()}
           </Toolbar>
         </Container>
